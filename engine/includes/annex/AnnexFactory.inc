@@ -15,6 +15,16 @@ class AnnexFactory extends Annex
   private $annexes = [];
 
   /**
+   * Checks whether the specified Annex exists in the loaded list.
+   * @param string $name
+   * @return bool
+   */
+  public function exists(string $name): bool
+  {
+    return isset($this->annexes[$name]);
+  }
+
+  /**
    * Extracts each Annex and passes it to the callback function.
    * Stopping the iteration is performed using the return value true.
    * @param callable $callable
