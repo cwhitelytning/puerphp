@@ -50,12 +50,12 @@ final class AnnexLoader extends AnnexFactory
    * Loads one or more Annexes from the directory passed in the constructor.
    * @param string $name
    * @param mixed ...$args
-   * @return AnnexInterface
+   * @return Annex
    * @throws ClassNotFoundException
    * @throws FileIncludeException
    * @throws InvalidClassException
    */
-  function load(string $name, ...$args): AnnexInterface
+  function load(string $name, ...$args): Annex
   {
     $directory = $this->directory . DIRECTORY_SEPARATOR . strtolower($name);
     $filename = $directory . DIRECTORY_SEPARATOR . "$name.php";

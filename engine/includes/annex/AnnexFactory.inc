@@ -10,7 +10,7 @@ class AnnexFactory extends Annex
 {
   /**
    * Contains a list of all the added Annexes.
-   * @var AnnexInterface[]
+   * @var Annex[]
    */
   private $annexes = [];
 
@@ -28,10 +28,10 @@ class AnnexFactory extends Annex
 
   /**
    * Adds a new Annex object to the list.
-   * @param AnnexInterface $annex
-   * @return AnnexInterface
+   * @param Annex $annex
+   * @return Annex
    */
-  function add(AnnexInterface $annex): AnnexInterface
+  function add(Annex $annex): Annex
   {
     $name = $annex->getClassInfo()->getName();
     return $this->annexes[$name] = $annex;
