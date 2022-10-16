@@ -102,6 +102,7 @@ final class HTTPServer extends PluginLoader
   }
 
   /**
+   * Returns a Listeners class.
    * @return Listeners
    */
   public function getListeners(): Listeners
