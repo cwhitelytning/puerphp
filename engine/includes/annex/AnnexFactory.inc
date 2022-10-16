@@ -19,7 +19,7 @@ class AnnexFactory extends Annex
    * Stopping the iteration is performed using the return value true.
    * @param callable $callable
    */
-  function fetch(callable $callable)
+  protected function fetch(callable $callable)
   {
     foreach ($this->annexes as $annex) {
       if ($callable($annex)) break;
@@ -31,7 +31,7 @@ class AnnexFactory extends Annex
    * @param Annex $annex
    * @return Annex
    */
-  function add(Annex $annex): Annex
+  protected function add(Annex $annex): Annex
   {
     $name = $annex->getClassInfo()->getName();
     return $this->annexes[$name] = $annex;
@@ -41,7 +41,7 @@ class AnnexFactory extends Annex
    * Unloads the Annex from the list.
    * @param string $name
    */
-  function unload(string $name)
+  protected function unload(string $name)
   {
     $this->annexes[$name] = null;
     unset($this->annexes[$name]);
