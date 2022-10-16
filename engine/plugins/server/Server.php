@@ -50,10 +50,16 @@ class Server extends Plugin
    */
   protected function onPluginEnd(): void
   {
-    http_response_code($this->response->getStatus()->getCode());
+    # Global array may not be available if it is located under the console interface.
+    if (isset($_SERVER['REQUEST_URI'], $_SERVER['REMOTE_ADDR'], $_SERVER['REMOTE_PORT'], $_SERVER['REQUEST_METHOD'])) {
+      $this->getLogger()->debug('Sending a response to a request ("%REMOTE_ADDR:%REMOTE_PORT", "%REQUEST_METHOD", "%REQUEST_URI")', $_SERVER);
+    }
+
+    http_response_code($status = $this->response->getStatus()->getCode());
     if ($headers = $this->response->getHeaders()->toStrings()) {
       foreach ($headers as $header) header($header);
     }
     echo $this->response->getContent();
+    $this->getLogger()->debug('Response has been sent (status "%0")', [$status]);
   }
 }
