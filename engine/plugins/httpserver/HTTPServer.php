@@ -5,21 +5,21 @@ include_once('includes/http/Content.inc');
 include_once('includes/http/Status.inc');
 include_once('includes/http/Response.inc');
 
-include_once('includes/Listeners.inc');
-include_once('includes/Package.inc');
+include_once('includes/designer/xml/XMLTag.inc');
+include_once('includes/designer/html/HTMLTag.inc');
+include_once('includes/designer/html/HTMLContent.inc');
 
-use engine\includes\annex\AnnexLoader;
+include_once('includes/Listeners.inc');
+
 use engine\includes\Plugin;
 use engine\includes\PluginLoader;
 
-use engine\includes\library\ConfigFile;
 use engine\plugins\httpserver\includes\http\Content;
 use engine\plugins\httpserver\includes\http\Headers;
 use engine\plugins\httpserver\includes\http\Response;
 use engine\plugins\httpserver\includes\http\ResponseInterface;
 use engine\plugins\httpserver\includes\http\Status;
 use engine\plugins\httpserver\includes\Listeners;
-use engine\plugins\httpserver\includes\Package;
 
 /**
  * Class HTTPServer
@@ -30,12 +30,6 @@ use engine\plugins\httpserver\includes\Package;
  */
 final class HTTPServer extends PluginLoader
 {
-  /**
-   * Contains a package loader.
-   * @var AnnexLoader
-   */
-  private $packages;
-
   /**
    * Contains registered pages.
    * @var Listeners
@@ -111,37 +105,12 @@ final class HTTPServer extends PluginLoader
   }
 
   /**
-   * Returns the package loader.
-   * @return AnnexLoader
-   */
-  public function getPackages(): AnnexLoader
-  {
-    return $this->packages;
-  }
-
-  /**
    * Initialization of the plugin.
    * @return void
    */
   protected function onPluginInit(): void
   {
     $this->listeners = new Listeners();
-    $this->loadPackages();
     parent::onPluginInit();
-  }
-
-  /**
-   * Loads packages.
-   */
-  protected function loadPackages()
-  {
-    $this->getPaths()->register('packages', '%dir%', 'packages');
-    $this->packages = new AnnexLoader($this->getClassInfo()->getPackage() . '\packages', Package::class);
-    # ----------------------------------------------------------------------------------------------------------------
-    $filename = $this->getPaths()->collect('%configs%', 'packages.ini');
-    $this->getLogger()->debug('Begin reading packages list (filepath "%0")', [$filename]);
-
-    $count = $this->multiple(ConfigFile::parseFile($filename), $this->packages);
-    $this->getLogger()->debug("Finished reading packages list (loaded $count packages)");
   }
 }
