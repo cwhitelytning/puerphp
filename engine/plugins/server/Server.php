@@ -7,7 +7,6 @@ include_once('includes/Status.inc');
 include_once('includes/Response.inc');
 
 use engine\includes\Plugin;
-use engine\includes\PluginLoader;
 use engine\plugins\server\includes\Content;
 use engine\plugins\server\includes\Headers;
 use engine\plugins\server\includes\Response;
