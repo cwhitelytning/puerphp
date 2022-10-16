@@ -1,0 +1,186 @@
+::-webkit-input-placeholder
+{
+	color: #C8C8C8;
+}
+
+:-moz-placeholder
+{
+	color: #C8C8C8;
+	opacity: 1;
+}
+
+::-moz-placeholder
+{
+	color: #C8C8C8;
+	opacity: 1;
+}
+
+:-ms-input-placeholder
+{
+	color: #C8C8C8;
+}
+
+::-ms-input-placeholder
+{
+	color: #C8C8C8;
+}
+
+::placeholder
+{
+	color: #C8C8C8;
+}
+
+@font-face
+{
+	font-style: normal;
+	font-weight: normal;
+	font-family: 'Montserrat Regular';
+	src: local('Montserrat Regular'),
+	url(fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face
+{
+	font-style: normal;
+	font-weight: bold;
+	font-family: 'Montserrat Bold';
+	src: local('Montserrat Bold'),
+	url(fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face
+{
+	font-style: italic;
+	font-weight: normal;
+	font-family: 'Montserrat Italic';
+	src: local('Montserrat Italic'),
+	url(fonts/Montserrat/Montserrat-Italic.ttf);
+}
+
+@font-face
+{
+	font-style: italic;
+	font-weight: bold;
+	font-family: 'Montserrat BoldItalic';
+	src: local('Montserrat BoldItalic'),
+	url(fonts/Montserrat/Montserrat-BoldItalic.ttf);
+}
+
+*, *::before, *::after
+{
+	box-sizing: border-box;
+}
+
+*
+{
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat Regular', sans-serif;
+	font-style: normal;
+}
+
+html
+{
+	width: 100%;
+	height: 100%;
+}
+
+body
+{
+	align-items: center;
+	background: #1C1F23;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: inherit;
+	height: inherit;
+}
+
+.popup
+{
+	background: #23252D;
+	border-top: 2px solid #3A4148;
+	border-bottom: 2px solid #3A4148;
+	border-radius: 6px;
+	box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.popup h1
+{
+	color: white;
+	margin-top: 20px;
+}
+
+.popup h5
+{
+	color: white;
+	margin-bottom: 20px;
+}
+
+.popup img
+{
+	background: #3B3D49;
+	border-radius: 100%;
+	padding: 5%;
+	width: 35%;
+}
+
+form
+{
+	display: flex;
+	flex-direction: column;
+}
+
+form .email
+{
+	border-radius: 5px 5px 0 0;
+}
+
+form .password
+{
+	border-radius: 0 0 5px 5px;
+}
+
+.blue-button
+{
+	border-radius: 5px;
+	background: #008C3E;
+	border: none;
+	color: white;
+	margin-top: 10px;
+	padding: 10px;
+	font-size: 24px;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 #0091C8;
+	transition: filter 0.2s ease-in-out;
+}
+
+.blue-button:hover
+{
+	filter: brightness(120%);
+}
+
+.blue-button:focus
+{
+	filter: brightness(95%);
+}
+
+input[type=text], input[type=password]
+{
+	border: none;
+	background: #33353F;
+	color: white;
+	font-size: 18px;
+	padding: 20px;
+	text-align: left;
+}
+
+input[type=text], input[type=password]:focus
+{
+	outline: none;
+}
