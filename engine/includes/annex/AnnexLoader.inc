@@ -39,7 +39,7 @@ final class AnnexLoader extends AnnexFactory
    * @param string $namespace
    * @param string $classpath
    */
-  function __construct(string $namespace, string $classpath = Annex::class)
+  public function __construct(string $namespace, string $classpath = Annex::class)
   {
     $this->namespace = $namespace;
     $this->classpath = $classpath;
@@ -55,7 +55,7 @@ final class AnnexLoader extends AnnexFactory
    * @throws FileIncludeException
    * @throws InvalidClassException
    */
-  function load(string $name, ...$args): Annex
+  protected function load(string $name, ...$args): Annex
   {
     $directory = $this->directory . DIRECTORY_SEPARATOR . strtolower($name);
     $filename = $directory . DIRECTORY_SEPARATOR . "$name.php";
@@ -79,7 +79,7 @@ final class AnnexLoader extends AnnexFactory
    * @param string $classpath
    * @return bool
    */
-  function checkClass(string $classpath): bool
+  protected function checkClass(string $classpath): bool
   {
     $parents = class_parents($classpath);
     return isset($parents[$this->classpath]);
@@ -89,7 +89,7 @@ final class AnnexLoader extends AnnexFactory
    * Returns the classpath.
    * @return string
    */
-  function getClassPath(): string
+  protected function getClassPath(): string
   {
     return $this->classpath;
   }
