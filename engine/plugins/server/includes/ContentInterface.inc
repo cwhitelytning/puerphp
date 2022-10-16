@@ -1,4 +1,4 @@
-<?php namespace engine\plugins\httpserver\includes\http;
+<?php namespace engine\plugins\server\includes;
 
 /**
  * Interface ContentInterface

@@ -1,12 +1,12 @@
-<?php namespace engine\plugins\httpserver\includes\http;
+<?php namespace engine\plugins\server\includes;
 
 include_once('ContentInterface.inc');
 
 /**
  * Class Content
- * @package engine\plugins\httpserver\includes\http
+ * @package engine\plugins\server\includes
  */
-final class Content implements ContentInterface
+class Content implements ContentInterface
 {
   /**
    * Contains an array of ContentInterface.

@@ -1,33 +1,35 @@
-<?php namespace engine\plugins\httpserver\includes\http;
-
-include_once('ResponseInterface.inc');
+<?php namespace engine\plugins\server\includes;
 
 /**
  * Class Response
- * @package engine\plugins\httpserver\includes\http
+ * @package engine\plugins\server\includes
  */
-final class Response implements ResponseInterface {
+final class Response {
   /**
    * Contains headers.
-   * @var HeadersInterface
+   * @var Headers
    */
   protected $headers;
+
   /**
    * Contains code and description.
-   * @var StatusInterface
+   * @var Status
    */
   protected $status;
+
   /**
    * Contains the content to send the response.
-   * @var ContentInterface
+   * @var Content
    */
   private $content;
 
   /**
    * Response constructor.
    * @param Status $status
+   * @param Headers $headers
+   * @param Content $content
    */
-  public function __construct(StatusInterface $status, HeadersInterface $headers, ContentInterface $content)
+  public function __construct(Status $status, Headers $headers, Content $content)
   {
     $this->status = $status;
     $this->headers = $headers;
@@ -36,27 +38,27 @@ final class Response implements ResponseInterface {
 
   /**
    * Returns the headers.
-   * @return HeadersInterface
+   * @return Headers
    */
-  public function getHeaders(): HeadersInterface
+  public function getHeaders(): Headers
   {
     return $this->headers;
   }
 
   /**
    * Returns a status.
-   * @return StatusInterface
+   * @return Status
    */
-  public function getStatus(): StatusInterface
+  public function getStatus(): Status
   {
     return $this->status;
   }
 
   /**
    * Returns a list of strings to send content in the response.
-   * @return ContentInterface
+   * @return Content
    */
-  public function getContent(): ContentInterface
+  public function getContent(): Content
   {
     return $this->content;
   }

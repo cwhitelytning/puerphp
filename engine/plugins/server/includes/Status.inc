@@ -1,12 +1,10 @@
-<?php namespace engine\plugins\httpserver\includes\http;
-
-include_once('StatusInterface.inc');
+<?php namespace engine\plugins\server\includes;
 
 /**
  * Class Status
- * @package engine\plugins\httpserver\includes\http
+ * @package engine\plugins\server
  */
-final class Status implements StatusInterface
+final class Status
 {
   const HTTP_CONTINUE = 100;
   const HTTP_SWITCHING_PROTOCOLS = 101;

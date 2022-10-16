@@ -59,7 +59,7 @@ final class AnnexLoader extends AnnexFactory
   {
     $directory = $this->directory . DIRECTORY_SEPARATOR . strtolower($name);
     $filename = $directory . DIRECTORY_SEPARATOR . "$name.php";
-    if (include_once($filename)) {
+    if (@include_once($filename)) {
       $classpath = "$this->namespace\\$name\\$name";
       if (class_exists($classpath)) {
         if ($this->checkClass($classpath)) {
