@@ -96,7 +96,7 @@ final class HTTPServer extends PluginLoader
    * Returns name and revision of the information protocol via which the page was requested.
    * @return string
    */
-  static function getProtocol(): string
+  static public function getProtocol(): string
   {
     return $_SERVER['SERVER_PROTOCOL'] ?? 'HTTP/1.0';
   }
@@ -114,7 +114,7 @@ final class HTTPServer extends PluginLoader
    * Returns the package loader.
    * @return AnnexLoader
    */
-  protected function getPackages(): AnnexLoader
+  public function getPackages(): AnnexLoader
   {
     return $this->packages;
   }
