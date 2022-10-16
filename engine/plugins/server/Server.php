@@ -19,7 +19,7 @@ use engine\plugins\server\includes\Status;
  * @version 1.0.9
  * @package engine\plugins\server
  */
-class Server extends Plugin
+final class Server extends Plugin
 {
   /**
    * Contains the response.
