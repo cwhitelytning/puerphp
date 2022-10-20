@@ -1,19 +1,20 @@
 <?php namespace engine\includes\library;
 
 /**
- * Class SettingFile it is a base class that is a function of parsing special files.
+ * Class SettiFile it is a base class that is a function of parsing special files.
+ * Such files can be a list, a configuration file in the form of a key and a parameter value, as well as sections.
  * @package engine\includes\library
  */
-class SettingFile
+class SettiFile
 {
   /**
    * Contains the path to the file.
    * @var string
    */
-  private $filename;
+  private string $filename;
 
   /**
-   * SettingFile constructor.
+   * SettingsFile constructor.
    * @param string $filename
    */
   public function __construct(string $filename)
@@ -75,15 +76,6 @@ class SettingFile
    * @return string
    */
   final public function getFilename(): string
-  {
-    return $this->filename;
-  }
-
-  /**
-   * Returns the path to the file.
-   * @return string
-   */
-  public function __toString(): string
   {
     return $this->filename;
   }

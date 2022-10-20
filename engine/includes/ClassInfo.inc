@@ -1,24 +1,24 @@
-<?php namespace engine\includes\annex;
+<?php namespace engine\includes;
 
 use ReflectionClass;
 
 /**
  * Class ClassInfo contains information about the class by parsing annotations to it.
- * @package engine\includes\annex
+ * @package engine\includes
  */
 final class ClassInfo
 {
   /**
-   * Contains the name of the class.
-   * @var string
-   */
-  private $name;
-
-  /**
    * Contains class annotations.
    * @var array
    */
-  private $annotations;
+  private array $annotations;
+
+  /**
+   * Contains the name of the class.
+   * @var string
+   */
+  private string $name;
 
   /**
    * Returns all annotations on a class.
@@ -27,8 +27,9 @@ final class ClassInfo
   public function __construct(object $object)
   {
     $class = new ReflectionClass($object);
-    $this->name = $class->getShortName();
+
     $this->annotations = self::parseAnnotations($class->getDocComment());
+    $this->name = $class->getShortName();
   }
 
   /**
@@ -39,7 +40,7 @@ final class ClassInfo
   static protected function parseAnnotations(string $comments): array
   {
     $tag = 0;
-    $collection = [];
+    $annotations = [];
 
     while ($tag = strpos($comments, '@', $tag)) {
       if ($separator = strpos($comments, ' ', $tag)) {
@@ -49,12 +50,12 @@ final class ClassInfo
           if ($end = strpos($comments, '*', $separator)) {
             $value = mb_substr($comments, ++$separator, $end - $separator);
           }
-          $collection[$key][] = trim($value);
+          $annotations[$key][] = trim($value);
         }
       }
     }
 
-    return $collection;
+    return $annotations;
   }
 
   /**
@@ -113,30 +114,17 @@ final class ClassInfo
   }
 
   /**
-   * Returns the description of the package.
-   * @return string|null
+   * Returns the name, author, version, and description of the plugin.
+   * @return array
    */
-  public function getDescription(): ?string
+  public function getShortInfo(): array
   {
-    return $this->getAnnotation('description');
-  }
-
-  /**
-   * Returns the package version.
-   * @return string|null
-   */
-  public function getVersion(): ?string
-  {
-    return $this->getAnnotation('version');
-  }
-
-  /**
-   * Returns the author of the package.
-   * @return string|null
-   */
-  public function getAuthor(): ?string
-  {
-    return $this->getAnnotation('author');
+    return [
+      'name' => $this->getName(),
+      'author' => $this->getAuthor(),
+      'version' => $this->getVersion(),
+      'description' => $this->getDescription()
+    ];
   }
 
   /**
@@ -149,16 +137,29 @@ final class ClassInfo
   }
 
   /**
-   * Returns the name, author, version, and description of the plugin.
-   * @return array
+   * Returns the author of the package.
+   * @return string|null
    */
-  public function getShortInfo(): array
+  public function getAuthor(): ?string
   {
-    return [
-      'name' => $this->getName(),
-      'author' => $this->getAuthor(),
-      'version' => $this->getVersion(),
-      'description' => $this->getDescription()
-    ];
+    return $this->getAnnotation('author');
+  }
+
+  /**
+   * Returns the package version.
+   * @return string|null
+   */
+  public function getVersion(): ?string
+  {
+    return $this->getAnnotation('version');
+  }
+
+  /**
+   * Returns the description of the package.
+   * @return string|null
+   */
+  public function getDescription(): ?string
+  {
+    return $this->getAnnotation('description');
   }
 }

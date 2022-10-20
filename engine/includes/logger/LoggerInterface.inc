@@ -9,10 +9,10 @@ interface LoggerInterface {
    * This is a level for external systems that can look at your system and determine for sure that it does not work completely,
    * or its self-diagnosis does not work.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function emergency(string $message, array $args = []);
+   function emergency(string $message, array $context = []);
 
   /**
    * System itself can diagnose its condition, for example,
@@ -21,10 +21,10 @@ interface LoggerInterface {
    * These can be checks of connected resources or something specific,
    * for example, the balance on the account of the external resource used.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function alert(string $message, array $args = []);
+   function alert(string $message, array $context = []);
 
   /**
    * An event when a system component fails,
@@ -32,10 +32,10 @@ interface LoggerInterface {
    * It already depends a lot on what the system is doing.
    * It is suitable for events that it is important to find out about quickly, even if it happened only once.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function critical(string $message, array $args = []);
+   function critical(string $message, array $context = []);
 
   /**
    * An event has occurred about which,
@@ -47,10 +47,10 @@ interface LoggerInterface {
    * For example, it was not possible to save the user's avatar at his request,
    * but the system is not an avatar service, but a chat system.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function error(string $message, array $args = []);
+   function error(string $message, array $context = []);
 
   /**
    * Events, for immediate notification of which you need to collect a significant number of them over a period of time.
@@ -63,10 +63,10 @@ interface LoggerInterface {
    * Notification of them is needed (at a high frequency) to learn about sudden anomalies,
    * because they can be symptoms of more serious problems.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function warning(string $message, array $args = []);
+   function warning(string $message, array $context = []);
 
   /**
    * These are events that report deviations provided by the system,
@@ -78,10 +78,10 @@ interface LoggerInterface {
    * Notification of them at a high frequency is also necessary,
    * since a sharp increase in the number of deviations may be the result of an error that urgently needs to be corrected.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function notice(string $message, array $args = []);
+   function notice(string $message, array $context = []);
 
   /**
    * Events, the occurrence of which informs about the normal functioning of the system.
@@ -92,10 +92,10 @@ interface LoggerInterface {
    * if an insufficient number of such events occurred over a period of time,
    * then you need to notify, because their decrease could be caused as a result of an error.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function info(string $message, array $args = []);
+   function info(string $message, array $context = []);
 
   /**
    * Events for debugging a process in the system.
@@ -110,8 +110,8 @@ interface LoggerInterface {
    * As a result, the number of such events in normal operation will be variable,
    * then monitoring for notification of them can not be connected.
    * @param string $message
-   * @param array $args
+   * @param array $context
    * @return void
    */
-   function debug(string $message, array $args = []);
+   function debug(string $message, array $context = []);
 }
