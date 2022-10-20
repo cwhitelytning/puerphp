@@ -1,7 +1,6 @@
 <?php namespace engine\includes\library;
 
 use engine\includes\ClassInfo;
-
 include_once('SettiFile.inc');
 
 /**
@@ -34,12 +33,13 @@ final class ConfigFile extends SettiFile
   }
 
   /**
-   * Executes or creates a file (if it does not exist).
+   * Generates a file (if it does not exist)
+   * or executes it by applying the values from the configuration to the registered variables.
    * @param ClassInfo $info
    */
-  public function createExecute(ClassInfo $info): void
+  public function generateOrExecute(ClassInfo $info): void
   {
-    if (!$this->create($info)) $this->execute();
+    if (!$this->generate($info)) $this->execute();
   }
 
   /**
@@ -48,7 +48,7 @@ final class ConfigFile extends SettiFile
    * @param ClassInfo $info used in the header of the file
    * @return bool if the file exists or an error occurred when creating the file returns false.
    */
-  public function create(ClassInfo $info): bool
+  public function generate(ClassInfo $info): bool
   {
     $filename = $this->getFilename();
     if (!file_exists($filename)) {
@@ -83,11 +83,12 @@ final class ConfigFile extends SettiFile
   }
 
   /**
-   * Reads the configuration and enters the values in the registered keys.
+   * Reads the configuration
+   * and applies the values from the configuration to the registered variables.
    */
   public function execute(): void
   {
-    if ($vars = $this->parseFile($this->getFilename())) {
+    if ($vars = self::parseFile($this->getFilename())) {
       foreach ($vars as $key => $value) {
         # Only if the key was registered earlier.
         if (isset($this->values[$key])) {
@@ -113,7 +114,7 @@ final class ConfigFile extends SettiFile
   }
 
   /**
-   * Registers a new value.
+   * Registers a new configuration variable.
    * @param string $key
    * @param integer|double|string $value
    * @param array $description

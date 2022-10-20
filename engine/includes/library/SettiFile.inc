@@ -25,13 +25,14 @@ class SettiFile
   /**
    * Parses the contents of the configuration file and returns an array.
    * @param string $filename
-   * @return array|false if the file could not be opened returns false.
+   * @return array|bool
    */
   final public static function parseFile(string $filename)
   {
-    return ($content = file_get_contents($filename)) && ($strings = explode(PHP_EOL, $content))
-      ? self::parse($strings)
-      : false;
+    # If the file was opened, but there is no data, this is not an error.
+    # If the file could not be opened, it means that it does not exist or there is no read access.
+    $content = @file_get_contents($filename);
+    return is_string($content) ? self::parse(explode("\n", $content)) : false;
   }
 
   /**
