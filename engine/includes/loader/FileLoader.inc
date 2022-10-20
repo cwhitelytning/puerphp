@@ -47,8 +47,8 @@ class FileLoader extends ModuleLoader
    */
   final protected function load(string $namespace, string $classname, array $args = [])
   {
-    $directory = $this->getPaths()->interpolate('{root}{separator}') . strtolower($classname);
-    $filename = $this->getPaths()->interpolate("$directory{separator}$classname") . static::FILE_EXTENSION;
+    $directory = $this->getPaths()->format('{root}', strtolower($classname));
+    $filename = $this->getPaths()->format($directory, $classname, static::FILE_EXTENSION);
     if (@include_once($filename)) {
       $this->add("$namespace\\$classname\\$classname", ...$args);
     } else

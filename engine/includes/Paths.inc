@@ -13,53 +13,17 @@ final class Paths
   private array $paths = [];
 
   /**
-   * Contains Boolean values for accessing variables.
-   * @var bool[]
-   */
-  private array $access = [];
-
-  /**
-   * Paths constructor.
-   */
-  public function __construct()
-  {
-    $this->set('separator', DIRECTORY_SEPARATOR);
-  }
-
-  /**
    * Registers a new variable.
    * @param string $key
-   * @param string $value
-   * @param bool $readonly
+   * @param string ...$values
    * @return bool
    */
-  public function set(string $key, string $value, bool $readonly = true): bool
+  public function set(string $key, string ...$values): bool
   {
-    if ($result = !$this->isReadOnly($key)) {
-      $this->paths[$key] = $this->format($value);
-      $this->access[$key] = $readonly;
+    if ($result = is_null($this->paths[$key])) {
+      $this->paths[$key] = self::absolute($this->format(...$values));
     }
     return $result;
-  }
-
-  /**
-   * Checks whether a variable is read-only.
-   * @param string $name
-   * @return bool
-   */
-  public function isReadOnly(string $name): bool
-  {
-    return isset($this->access[$name]) && $this->access[$name];
-  }
-
-  /**
-   * Replaces templates for variables in the line and reveals all transitions of the type /./, /../.
-   * @param string $string
-   * @return string
-   */
-  public function format(string $string): string
-  {
-    return self::getAbsolutePath($this->interpolate($string));
   }
 
   /**
@@ -67,7 +31,7 @@ final class Paths
    * @param string $path
    * @return string
    */
-  public static function getAbsolutePath(string $path): string
+  public static function absolute(string $path): string
   {
     if ((($position = strpos($path, '\\')) !== false) || (($position = strpos($path, '/')) !== false)) {
       $separator = $path[$position];
@@ -88,16 +52,16 @@ final class Paths
 
   /**
    * Replaces templates for variables in the line and returns the string.
-   * @param string $path
+   * @param string ...$values
    * @return string
    */
-  public function interpolate(string $path): string
+  public function format(string ...$values): string
   {
     $replace = [];
     foreach ($this->paths as $key => $value) {
       $replace['{' . $key . '}'] = $value;
     }
-    return strtr($path, $replace);
+    return strtr(implode(DIRECTORY_SEPARATOR, $values), $replace);
   }
 
   /**

@@ -46,11 +46,11 @@ class Module implements LoggerAwareInterface
     # Path to the file of the current module.
     $this->paths->set('file', (new ReflectionClass($this))->getFileName());
     # Directory where the current module is located.
-    $this->paths->set('dir', '{file}{separator}..');
-    # Directory of configuration files.
-    $this->paths->set('configs', '{dir}{separator}configs');
+    $this->paths->set('dir', '{file}', '..');
     # Root directory is everything above the directory in which it is located.
-    $this->paths->set('root', '{dir}{separator}..');
+    $this->paths->set('root', '{dir}', '..');
+    # Directory of configuration files.
+    $this->paths->set('configs', '{dir}', 'configs');
 
     $this->setLoader($loader);
     $this->setLogger($logger);
