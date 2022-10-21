@@ -18,7 +18,7 @@ final class ConfigFile extends SettiFile
 
   /**
    * Contains a description of the configuration variable.
-   * @var string[]
+   * @var array
    */
   private array $descriptions = [];
 
@@ -117,10 +117,10 @@ final class ConfigFile extends SettiFile
    * Registers a new configuration variable.
    * @param string $key
    * @param integer|double|string $value
-   * @param array $description
+   * @param string ...$description
    * @return bool
    */
-  public function set(string $key, $value, array $description = []): bool
+  public function set(string $key, $value, string ...$description): bool
   {
     if ($result = in_array(gettype($value), ['integer', 'double', 'string'])) {
       $this->values[$key] = $value;
