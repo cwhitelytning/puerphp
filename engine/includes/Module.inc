@@ -3,7 +3,7 @@
 include_once('logger/LoggerAwareInterface.inc');
 include_once('logger/NullLogger.inc');
 include_once('ModuleInfo.inc');
-include_once('Paths.inc');
+include_once('Environ.inc');
 
 use engine\includes\loader\ModuleLoader;
 use engine\includes\logger\LoggerAwareInterface;
@@ -30,9 +30,9 @@ class Module implements LoggerAwareInterface
 
   /**
    * Contains registered paths.
-   * @var Paths
+   * @var Environ
    */
-  private Paths $paths;
+  private Environ $environ;
 
   /**
    * Module constructor.
@@ -41,18 +41,27 @@ class Module implements LoggerAwareInterface
    */
   final public function __construct(?ModuleLoader $loader, ?LoggerInterface $logger = null)
   {
-    $this->paths = new Paths();
+    $this->environ = new Environ();
     # Path to the file of the current module.
-    $this->paths->set('file', $this->getInfo()->getFilename());
+    $this->environ->set('file', $this->getInfo()->getFilename());
     # Directory where the current module is located.
-    $this->paths->set('dir', '{file}', '..');
+    $this->environ->set('dir', '{file}', '..');
     # Root directory is everything above the directory in which it is located.
-    $this->paths->set('root', '{dir}', '..');
+    $this->environ->set('root', '{dir}', '..');
     # Directory of configuration files.
-    $this->paths->set('configs', '{dir}', 'configs');
+    $this->environ->set('configs', '{dir}', 'configs');
 
     $this->setLoader($loader);
     $this->setLogger($logger);
+  }
+
+  /**
+   * Returns information about the class by parsing annotations to it.
+   * @return ModuleInfo
+   */
+  final protected function getInfo(): ModuleInfo
+  {
+    return new ModuleInfo($this);
   }
 
   /**
@@ -75,21 +84,12 @@ class Module implements LoggerAwareInterface
   }
 
   /**
-   * Returns information about the class by parsing annotations to it.
-   * @return ModuleInfo
-   */
-  final protected function getInfo(): ModuleInfo
-  {
-    return new ModuleInfo($this);
-  }
-
-  /**
    * Returns registered paths.
-   * @return Paths
+   * @return Environ
    */
-  final protected function getPaths(): Paths
+  final protected function getEnviron(): Environ
   {
-    return $this->paths;
+    return $this->environ;
   }
 
   /**

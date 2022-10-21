@@ -24,7 +24,7 @@ final class Engine extends FileLoader
   {
     $engine = new Engine(null);
     $engine->multiple('' /* global namespace */,
-      SettiFile::parseFile($engine->getPaths()->format('{configs}', 'modules.setti'))
+      SettiFile::parseFile($engine->getEnviron()->format('{configs}', 'modules.setti'))
     );
 
     # Initialization of modules.

@@ -1,16 +1,16 @@
 <?php namespace engine\includes;
 
 /**
- * Class Paths
+ * Class Environ used to store the module's environment variables.
  * @package engine\includes
  */
-final class Paths
+final class Environ
 {
   /**
-   * Contains registered paths.
+   * Contains variables.
    * @var string[]
    */
-  private array $paths = [];
+  private array $variables = [];
 
   /**
    * Registers a new variable.
@@ -20,8 +20,8 @@ final class Paths
    */
   public function set(string $key, string ...$values): bool
   {
-    if ($result = is_null($this->paths[$key])) {
-      $this->paths[$key] = self::absolute($this->format(...$values));
+    if ($result = is_null($this->variables[$key])) {
+      $this->variables[$key] = self::absolute($this->format(...$values));
     }
     return $result;
   }
@@ -58,7 +58,7 @@ final class Paths
   public function format(string ...$values): string
   {
     $replace = [];
-    foreach ($this->paths as $key => $value) {
+    foreach ($this->variables as $key => $value) {
       $replace['{' . $key . '}'] = $value;
     }
     return strtr(implode(DIRECTORY_SEPARATOR, $values), $replace);
@@ -71,7 +71,7 @@ final class Paths
    */
   public function get(string $key): ?string
   {
-    return $this->exists($key) ? $this->paths[$key] : null;
+    return $this->exists($key) ? $this->variables[$key] : null;
   }
 
   /**
@@ -81,6 +81,6 @@ final class Paths
    */
   public function exists(string $key): bool
   {
-    return isset($this->paths[$key]);
+    return isset($this->variables[$key]);
   }
 }
