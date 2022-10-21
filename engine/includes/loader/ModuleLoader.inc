@@ -45,7 +45,7 @@ class ModuleLoader extends Module implements Countable
   final public function get(string $name): ?Module
   {
     return $this->fetch(function (Module $module) use (&$name) {
-      return $module->getClassInfo()->getName() == $name;
+      return $module->getInfo()->getName() == $name;
     });
   }
 

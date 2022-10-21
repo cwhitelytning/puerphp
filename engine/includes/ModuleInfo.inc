@@ -3,10 +3,10 @@
 use ReflectionClass;
 
 /**
- * Class ClassInfo contains information about the class by parsing annotations to it.
+ * Class ModuleInfo contains information about the class by parsing annotations to it.
  * @package engine\includes
  */
-final class ClassInfo
+final class ModuleInfo
 {
   /**
    * Contains class annotations.
@@ -21,6 +21,12 @@ final class ClassInfo
   private string $name;
 
   /**
+   * Contains the path to the module file.
+   * @var string
+   */
+  private string $filename;
+
+  /**
    * Returns all annotations on a class.
    * @param object $object
    */
@@ -30,6 +36,7 @@ final class ClassInfo
 
     $this->annotations = self::parseAnnotations($class->getDocComment());
     $this->name = $class->getShortName();
+    $this->filename = (string)$class->getFileName();
   }
 
   /**
@@ -56,6 +63,15 @@ final class ClassInfo
     }
 
     return $annotations;
+  }
+
+  /**
+   * Returns the path to the module file.
+   * @return string
+   */
+  public function getFilename(): string
+  {
+    return $this->filename;
   }
 
   /**

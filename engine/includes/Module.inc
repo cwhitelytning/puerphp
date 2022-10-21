@@ -2,14 +2,13 @@
 
 include_once('logger/LoggerAwareInterface.inc');
 include_once('logger/NullLogger.inc');
-include_once('ClassInfo.inc');
+include_once('ModuleInfo.inc');
 include_once('Paths.inc');
 
 use engine\includes\loader\ModuleLoader;
 use engine\includes\logger\LoggerAwareInterface;
 use engine\includes\logger\LoggerInterface;
 use engine\includes\logger\NullLogger;
-use ReflectionClass;
 
 /**
  * Class Module
@@ -44,7 +43,7 @@ class Module implements LoggerAwareInterface
   {
     $this->paths = new Paths();
     # Path to the file of the current module.
-    $this->paths->set('file', (new ReflectionClass($this))->getFileName());
+    $this->paths->set('file', $this->getInfo()->getFilename());
     # Directory where the current module is located.
     $this->paths->set('dir', '{file}', '..');
     # Root directory is everything above the directory in which it is located.
@@ -77,11 +76,11 @@ class Module implements LoggerAwareInterface
 
   /**
    * Returns information about the class by parsing annotations to it.
-   * @return ClassInfo
+   * @return ModuleInfo
    */
-  final protected function getClassInfo(): ClassInfo
+  final protected function getInfo(): ModuleInfo
   {
-    return new ClassInfo($this);
+    return new ModuleInfo($this);
   }
 
   /**

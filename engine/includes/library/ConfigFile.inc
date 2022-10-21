@@ -1,6 +1,6 @@
 <?php namespace engine\includes\library;
 
-use engine\includes\ClassInfo;
+use engine\includes\ModuleInfo;
 include_once('SettiFile.inc');
 
 /**
@@ -47,9 +47,9 @@ final class ConfigFile extends SettiFile
   /**
    * Generates a file (if it does not exist)
    * or executes it by applying the values from the configuration to the registered variables.
-   * @param ClassInfo $info
+   * @param ModuleInfo $info
    */
-  public function generateOrExecute(ClassInfo $info): void
+  public function generateOrExecute(ModuleInfo $info): void
   {
     if (!$this->generate($info)) $this->execute();
   }
@@ -57,10 +57,10 @@ final class ConfigFile extends SettiFile
   /**
    * Automatically creates a configuration file (if not exists)
    * based on registered variables and added description.
-   * @param ClassInfo $info used in the header of the file
+   * @param ModuleInfo $info used in the header of the file
    * @return bool if the file exists or an error occurred when creating the file returns false.
    */
-  public function generate(ClassInfo $info): bool
+  public function generate(ModuleInfo $info): bool
   {
     $filename = $this->getFilename();
     if (!file_exists($filename)) {
