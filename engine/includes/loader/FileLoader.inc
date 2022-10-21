@@ -15,11 +15,6 @@ include_once('ModuleLoader.inc');
 class FileLoader extends ModuleLoader
 {
   /**
-   * Determines which extension will be used when including the file.
-   */
-  const FILE_EXTENSION = '.module';
-
-  /**
    * Loads one or more modules from the file system.
    * @param string $namespace
    * @param array $classnames
@@ -47,7 +42,7 @@ class FileLoader extends ModuleLoader
    */
   final protected function load(string $namespace, string $classname, array $args = [])
   {
-    $filename = $this->getPaths()->format('{root}', strtolower($classname), $classname . static::FILE_EXTENSION);
+    $filename = $this->getPaths()->format('{root}', strtolower($classname), "$classname.php");
     if (include_once($filename)) {
       $this->add("$namespace\\$classname\\$classname", ...$args);
     } else

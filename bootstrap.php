@@ -5,7 +5,7 @@
  */
 
 # Plugins are a separate part of the engine:
-require 'engine/Engine.module';
+require 'engine/Engine.php';
 
 # Required for automatic loading of plugins:
 engine\Engine::run();
