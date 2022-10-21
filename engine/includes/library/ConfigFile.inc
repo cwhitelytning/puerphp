@@ -23,6 +23,18 @@ final class ConfigFile extends SettiFile
   private array $descriptions = [];
 
   /**
+   * Selects one or more keys and returns their values.
+   * @param string ...$keys
+   * @return array
+   */
+  public function select(string ...$keys): array
+  {
+    $values = [];
+    foreach ($keys as $key) $values[] = $this->get($key);
+    return $values;
+  }
+
+  /**
    * Returns the value of a configuration variable.
    * @param string $key
    * @return integer|string|double
