@@ -41,15 +41,12 @@ class Module implements LoggerAwareInterface
    */
   final public function __construct(?ModuleLoader $loader, ?LoggerInterface $logger = null)
   {
-    $this->environ = new Environ();
-    # Path to the file of the current module.
-    $this->environ->set('file', $this->getInfo()->getFilename());
-    # Directory where the current module is located.
-    $this->environ->set('dir', '{file}', '..');
-    # Root directory is everything above the directory in which it is located.
-    $this->environ->set('root', '{dir}', '..');
-    # Directory of configuration files.
-    $this->environ->set('configs', '{dir}', 'configs');
+    $this->environ = new Environ([
+      'file' => $this->getInfo()->getFilename(),  # Path to the file of the current module.
+      'dir' => ['{file}', '..'],                  # Directory where the current module is located.
+      'root' => ['{dir}', '..'],                  # Root directory is everything above the directory in which it is located.
+      'configs' => ['{dir}', 'configs']           # Directory of configuration files.
+    ]);
 
     $this->setLoader($loader);
     $this->setLogger($logger);

@@ -13,6 +13,31 @@ final class Environ
   private array $variables = [];
 
   /**
+   * Environ constructor.
+   * @param array $variables
+   */
+  public function __construct(array $variables = [])
+  {
+    $this->append($variables);
+  }
+
+  /**
+   * Adds multiple variables from the array.
+   * @param array $variables
+   * @return void
+   */
+  public function append(array $variables): void
+  {
+    foreach ($variables as $key => $value) {
+      if (is_array($value)) {
+        $this->set($key, ...$value);
+      } elseif (is_string($value)) {
+        $this->set($key, $value);
+      }
+    }
+  }
+
+  /**
    * Registers a new variable.
    * @param string $key
    * @param string ...$values
