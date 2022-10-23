@@ -86,7 +86,18 @@ final class Environ
     foreach ($this->variables as $key => $value) {
       $replace['{' . $key . '}'] = $value;
     }
-    return strtr(implode(DIRECTORY_SEPARATOR, $values), $replace);
+    return strtr($this->collect(...$values), $replace);
+  }
+
+  /**
+   * Collects an array of strings into a string,
+   * concatenating them with the directory separator of the current operating system where the script is being executed.
+   * @param string ...$strings
+   * @return string
+   */
+  public function collect(string ...$strings): string
+  {
+    return implode(DIRECTORY_SEPARATOR, $strings);
   }
 
   /**

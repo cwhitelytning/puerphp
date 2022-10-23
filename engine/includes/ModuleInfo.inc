@@ -15,7 +15,7 @@ final class ModuleInfo
   private array $annotations;
 
   /**
-   * Contains the name of the class.
+   * Contains the class name without a namespace.
    * @var string
    */
   private string $name;
@@ -25,6 +25,12 @@ final class ModuleInfo
    * @var string
    */
   private string $filename;
+
+  /**
+   * Contains the class name including the namespace.
+   * @var string
+   */
+  private string $classname;
 
   /**
    * Returns all annotations on a class.
@@ -37,6 +43,7 @@ final class ModuleInfo
     $this->annotations = self::parseAnnotations($class->getDocComment());
     $this->name = $class->getShortName();
     $this->filename = (string)$class->getFileName();
+    $this->classname = $class->getName();
   }
 
   /**
@@ -72,6 +79,15 @@ final class ModuleInfo
   public function getFilename(): string
   {
     return $this->filename;
+  }
+
+  /**
+   * Returns the name of the class without the namespace.
+   * @return string
+   */
+  public function getName(): string
+  {
+    return $this->name;
   }
 
   /**
@@ -144,15 +160,6 @@ final class ModuleInfo
   }
 
   /**
-   * Returns the class name.
-   * @return string
-   */
-  public function getName(): string
-  {
-    return $this->name;
-  }
-
-  /**
    * Returns the author of the package.
    * @return string|null
    */
@@ -177,5 +184,14 @@ final class ModuleInfo
   public function getDescription(): ?string
   {
     return $this->getAnnotation('description');
+  }
+
+  /**
+   * Returns the name of the class including the namespace.
+   * @return string
+   */
+  public function getClassname(): string
+  {
+    return $this->classname;
   }
 }

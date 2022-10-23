@@ -1,15 +1,14 @@
 <?php namespace engine;
 
 include_once('includes/Module.inc');
-include_once('includes/loader/FileLoader.inc');
 include_once('includes/setti/ConfigFile.inc');
+include_once('includes/loader/LocalModuleLoader.inc');
 
+use engine\includes\loader\LocalModuleLoader;
 use engine\includes\setti\SettiFile;
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
-use engine\includes\loader\FileLoader;
-use engine\includes\Module;
 
 /**
  * Class Engine
@@ -18,8 +17,24 @@ use engine\includes\Module;
  * @author Clay Whitelytning
  * @version 1.1.0
  */
-final class Engine extends FileLoader
+final class Engine extends LocalModuleLoader
 {
+  /**
+   * Loads and initializes modules from modules.setti.
+   * @throws ClassNotFoundException
+   * @throws IncludeException
+   * @throws InvalidClassException
+   */
+  protected function onModuleInit(): void
+  {
+    if ($filenames = SettiFile::parseFile($this->getEnviron()->format('{configs}', 'modules.setti'))) {
+      foreach ($filenames as $filename) {
+        $this->loadFile($this->getEnviron()->get('root'), '' /* global namespace */, $filename);
+      }
+      parent::onModuleInit();
+    }
+  }
+
   /**
    * Creates a new instance of the engine and simulates life cycle work.
    * @return void
@@ -30,22 +45,9 @@ final class Engine extends FileLoader
   public static function run(): void
   {
     $engine = new Engine(null);
-    $engine->multiple('' /* global namespace */,
-      SettiFile::parseFile($engine->getEnviron()->format('{configs}', 'modules.setti'))
-    );
-
-    # Initialization of modules.
-    # ---------------------------------------------------------------------------------------------------------------
-    $engine->fetch(function (Module $module) {
-      if (method_exists($module, 'onModuleInit')) $module->onModuleInit();
-    });
-
-    # De-initialization of modules.
-    # ---------------------------------------------------------------------------------------------------------------
-    $engine->fetch(function (Module $module) {
-      if (method_exists($module, 'onModuleEnd')) $module->onModuleEnd();
-    });
-    # ---------------------------------------------------------------------------------------------------------------
+    $engine->onModuleInit();
+    # ----------------------------------------------------------------------------------------------------------------
+    $engine->onModuleEnd();
     $engine = null;
   }
 }
