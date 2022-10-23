@@ -24,7 +24,7 @@ class FileLoader extends ModuleLoader
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  final protected function multiple(string $namespace, array $classnames, array $args = [])
+  final protected function multiple(string $namespace, array $classnames, array $args = []): void
   {
     foreach ($classnames as $classname) {
       $this->load($namespace, $classname, $args);
@@ -44,7 +44,7 @@ class FileLoader extends ModuleLoader
   {
     $filename = $this->getEnviron()->format('{root}', strtolower($classname), "$classname.php");
     if (@include_once($filename)) {
-      $this->add("$namespace\\$classname\\$classname", ...$args);
+      $this->import("$namespace\\$classname\\$classname", ...$args);
     } else
       throw new IncludeException($filename);
   }

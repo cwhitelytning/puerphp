@@ -37,15 +37,23 @@ class ModuleLoader extends Module implements Countable
   }
 
   /**
-   * Searches for the module by name and returns it (if found).
+   * Returns the module.
    * @param string $name
    * @return Module|null
    */
   final public function get(string $name): ?Module
   {
-    return $this->fetch(function (Module $module) use (&$name) {
-      return $module->getInfo()->getName() == $name;
-    });
+    return $this->has($name) ? $this->modules[$name] : null;
+  }
+
+  /**
+   * Checks if the specified module class is present in the loader.
+   * @param string $name
+   * @return bool
+   */
+  final public function has(string $name): bool
+  {
+    return isset($this->modules[$name]);
   }
 
   /**
@@ -68,16 +76,17 @@ class ModuleLoader extends Module implements Countable
    * Creates a new instance of the class and adds it to the list of modules.
    * @param string $classpath
    * @param mixed ...$args
+   * @return Module|null
    * @throws ClassNotFoundException
    * @throws InvalidClassException
    */
-  final protected function add(string $classpath, ...$args)
+  final protected function import(string $classpath, ...$args): ?Module
   {
     if (class_exists($classpath)) {
       if ($this->isValidClass($classpath)) {
         # It is better not to use a string identifier,
         # the class name should be unique, but it may match.
-        $this->modules[] = new $classpath($this, ...$args);
+        return $this->add(new $classpath($this, ...$args));
       } else
         throw new InvalidClassException($classpath);
 
@@ -90,9 +99,21 @@ class ModuleLoader extends Module implements Countable
    * @param string $classpath
    * @return bool
    */
-  final private function isValidClass(string $classpath): bool
+  private function isValidClass(string $classpath): bool
   {
     $parents = class_parents($classpath);
     return isset($parents[static::MODULE_CLASSPATH]);
+  }
+
+  /**
+   * Adds a module to the list of all modules.
+   * Returns null if the specified class name is already in the list.
+   * @param Module $module
+   * @return Module|null
+   */
+  private function add(Module $module): ?Module
+  {
+    $name = $module->getInfo()->getName();
+    return $this->has($name) ? null : $this->modules[$name] = $module;
   }
 }

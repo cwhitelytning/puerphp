@@ -4,9 +4,6 @@ include_once('ModuleInfo.inc');
 include_once('Environ.inc');
 
 use engine\includes\loader\ModuleLoader;
-use engine\includes\logger\LoggerAwareInterface;
-use engine\includes\logger\LoggerInterface;
-use engine\includes\logger\NullLogger;
 
 /**
  * Class Module
@@ -19,12 +16,6 @@ class Module
    * @var ModuleLoader|null
    */
   private ?ModuleLoader $loader;
-
-  /**
-   * Contains a logger.
-   * @var LoggerInterface
-   */
-  private LoggerInterface $logger;
 
   /**
    * Contains registered paths.
@@ -66,7 +57,7 @@ class Module
    * Do not use this function.
    * @param ModuleLoader|null $loader
    */
-  final private function setLoader(?ModuleLoader $loader): void
+  private function setLoader(?ModuleLoader $loader): void
   {
     $this->loader = $loader;
   }
