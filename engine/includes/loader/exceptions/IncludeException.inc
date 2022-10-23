@@ -3,7 +3,7 @@
 include_once('LoaderException.inc');
 
 /**
- * Class FileNotFoundException
+ * Class IncludeException
  * @package engine\includes\loader\exceptions
  */
-final class FileIncludeException extends LoaderException {}
+final class IncludeException extends LoaderException {}

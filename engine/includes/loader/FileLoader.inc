@@ -1,11 +1,11 @@
 <?php namespace engine\includes\loader;
 
 use engine\includes\loader\exceptions\ClassNotFoundException;
-use engine\includes\loader\exceptions\FileIncludeException;
+use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
 use engine\includes\loader\exceptions\LoaderException;
 
-include_once('exceptions/FileIncludeException.inc');
+include_once('exceptions/IncludeException.inc');
 include_once('ModuleLoader.inc');
 
 /**
@@ -21,7 +21,7 @@ class FileLoader extends ModuleLoader
    * @param array $args
    * @return void
    * @throws ClassNotFoundException
-   * @throws FileIncludeException
+   * @throws IncludeException
    * @throws InvalidClassException
    */
   final protected function multiple(string $namespace, array $classnames, array $args = [])
@@ -37,7 +37,7 @@ class FileLoader extends ModuleLoader
    * @param string $classname
    * @param array $args
    * @throws ClassNotFoundException
-   * @throws FileIncludeException
+   * @throws IncludeException
    * @throws InvalidClassException
    */
   final protected function load(string $namespace, string $classname, array $args = [])
@@ -46,6 +46,6 @@ class FileLoader extends ModuleLoader
     if (@include_once($filename)) {
       $this->add("$namespace\\$classname\\$classname", ...$args);
     } else
-      throw new FileIncludeException($filename);
+      throw new IncludeException($filename);
   }
 }
