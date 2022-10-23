@@ -1,6 +1,6 @@
 <?php namespace journalist\includes;
 
-use engine\includes\Module;
+use engine\includes\module\Module;
 
 include_once('LoggerInterface.inc');
 include_once('LoggerLevels.inc');

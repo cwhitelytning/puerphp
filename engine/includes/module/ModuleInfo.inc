@@ -1,10 +1,10 @@
-<?php namespace engine\includes;
+<?php namespace engine\includes\module;
 
 use ReflectionClass;
 
 /**
  * Class ModuleInfo contains information about the class by parsing annotations to it.
- * @package engine\includes
+ * @package engine\includes\module
  */
 final class ModuleInfo
 {

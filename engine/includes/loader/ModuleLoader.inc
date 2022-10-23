@@ -3,7 +3,7 @@
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
-use engine\includes\Module;
+use engine\includes\module\Module;
 
 include_once('ModuleFactory.inc');
 

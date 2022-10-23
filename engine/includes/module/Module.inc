@@ -1,4 +1,4 @@
-<?php namespace engine\includes;
+<?php namespace engine\includes\module;
 
 include_once('ModuleInfo.inc');
 include_once('Environ.inc');
@@ -7,7 +7,7 @@ use engine\includes\loader\ModuleLoader;
 
 /**
  * Class Module
- * @package engine\includes
+ * @package engine\includes\module
  */
 class Module
 {

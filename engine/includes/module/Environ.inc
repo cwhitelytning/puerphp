@@ -1,8 +1,8 @@
-<?php namespace engine\includes;
+<?php namespace engine\includes\module;
 
 /**
  * Class Environ used to store the module's environment variables.
- * @package engine\includes
+ * @package engine\includes\module
  */
 final class Environ
 {

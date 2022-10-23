@@ -6,7 +6,7 @@ include_once('exceptions/InvalidClassException.inc');
 use Countable;
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\InvalidClassException;
-use engine\includes\Module;
+use engine\includes\module\Module;
 
 /**
  * Class ModuleFactory stores all added modules.

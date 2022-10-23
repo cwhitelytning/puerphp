@@ -6,7 +6,7 @@ include_once('includes/Methods.inc');
 include_once('includes/Content.inc');
 include_once('includes/Response.inc');
 
-use engine\includes\Module;
+use engine\includes\module\Module;
 use server\includes\Content;
 use server\includes\Headers;
 use server\includes\Response;
