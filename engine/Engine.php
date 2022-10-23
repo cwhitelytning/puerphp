@@ -15,7 +15,7 @@ use engine\includes\loader\exceptions\InvalidClassException;
  * @package engine
  * @description Engine module loader
  * @author Clay Whitelytning
- * @version 1.1.0
+ * @version 1.1.1
  */
 final class Engine extends LocalModuleLoader
 {

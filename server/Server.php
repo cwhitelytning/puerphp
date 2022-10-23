@@ -16,8 +16,8 @@ use server\includes\Status;
  * Class Server
  * @description Simple non-configurable server
  * @author Clay Whitelytning
- * @version 1.1.0
- * @package engine\plugins\server
+ * @version 1.1.1
+ * @package server
  */
 class Server extends Module
 {
