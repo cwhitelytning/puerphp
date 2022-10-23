@@ -1,4 +1,4 @@
-<?php namespace engine\includes\logger;
+<?php namespace journalist\includes;
 
 include_once('AbstractLogger.inc');
 
@@ -6,10 +6,10 @@ include_once('AbstractLogger.inc');
  * Class NullLogger
  * This Logger can be used to avoid conditional log calls.
  * Logging should always be optional, and if no logger is provided to your
- * library creating a NullLogger instance to have something to throw logs at
+ * setti creating a NullLogger instance to have something to throw logs at
  * is a good way to avoid littering your code with `if ($this->logger) { }`
  * blocks.
- * @package engine\includes\logger
+ * @package journalist\includes
  */
 final class NullLogger extends AbstractLogger
 {

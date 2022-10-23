@@ -6,7 +6,6 @@ include_once('exceptions/InvalidClassException.inc');
 use Countable;
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\InvalidClassException;
-use engine\includes\logger\LoggerInterface;
 use engine\includes\Module;
 
 /**
@@ -66,18 +65,6 @@ class ModuleLoader extends Module implements Countable
   }
 
   /**
-   * Sets a new logger or by default.
-   * @param LoggerInterface|null $logger
-   */
-  final public function setLogger(LoggerInterface $logger = null): void
-  {
-    parent::setLogger($logger);
-    $this->fetch(function (Module $module) {
-      $module->setLogger($this->getLogger());
-    });
-  }
-
-  /**
    * Creates a new instance of the class and adds it to the list of modules.
    * @param string $classpath
    * @param mixed ...$args
@@ -89,8 +76,8 @@ class ModuleLoader extends Module implements Countable
     if (class_exists($classpath)) {
       if ($this->isValidClass($classpath)) {
         # It is better not to use a string identifier,
-        # the class name should be unique but it may match.
-        $this->modules[] = new $classpath($this, $this->getLogger(), ...$args);
+        # the class name should be unique, but it may match.
+        $this->modules[] = new $classpath($this, ...$args);
       } else
         throw new InvalidClassException($classpath);
 

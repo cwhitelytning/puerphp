@@ -2,16 +2,16 @@
 
 include_once('includes/AbstractLogger.inc');
 
-use engine\includes\library\ConfigFile;
-use engine\includes\logger\LoggerLevels;
+use engine\includes\setti\ConfigFile;
 use journalist\includes\AbstractLogger;
+use journalist\includes\LoggerLevels;
 
 /**
- * Class Logger
+ * Class Journalist
  * @author Clay Whitelytning
  * @version 1.1.0
- * @description Configurable logger
- * @package logger
+ * @description File Logger
+ * @package journalist
  */
 final class Journalist extends AbstractLogger
 {
@@ -27,10 +27,6 @@ final class Journalist extends AbstractLogger
   public function onModuleInit(): void
   {
     $this->levels = $this->getLevelsConfig();
-
-    if ($loader = $this->getLoader()) {
-      $loader->setLogger($this);
-    }
   }
 
   /**

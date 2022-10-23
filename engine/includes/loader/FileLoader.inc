@@ -19,15 +19,15 @@ class FileLoader extends ModuleLoader
    * @param string $namespace
    * @param array $classnames
    * @param array $args
+   * @return void
+   * @throws ClassNotFoundException
+   * @throws FileIncludeException
+   * @throws InvalidClassException
    */
   final protected function multiple(string $namespace, array $classnames, array $args = [])
   {
     foreach ($classnames as $classname) {
-      try {
-        $this->load($namespace, $classname, $args);
-      } catch (LoaderException $exception) {
-        $this->getLogger()->error($exception);
-      }
+      $this->load($namespace, $classname, $args);
     }
   }
 
@@ -43,7 +43,7 @@ class FileLoader extends ModuleLoader
   final protected function load(string $namespace, string $classname, array $args = [])
   {
     $filename = $this->getEnviron()->format('{root}', strtolower($classname), "$classname.php");
-    if (include_once($filename)) {
+    if (@include_once($filename)) {
       $this->add("$namespace\\$classname\\$classname", ...$args);
     } else
       throw new FileIncludeException($filename);

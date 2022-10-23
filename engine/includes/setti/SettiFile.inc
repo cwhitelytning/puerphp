@@ -1,9 +1,9 @@
-<?php namespace engine\includes\library;
+<?php namespace engine\includes\setti;
 
 /**
  * Class SettiFile it is a base class that is a function of parsing special files.
  * Such files can be a list, a configuration file in the form of a key and a parameter value, as well as sections.
- * @package engine\includes\library
+ * @package engine\includes\setti
  */
 class SettiFile
 {

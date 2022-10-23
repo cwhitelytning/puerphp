@@ -1,10 +1,10 @@
-<?php namespace engine\includes\logger;
+<?php namespace journalist\includes;
 
 use ReflectionClass;
 
 /**
  * Class LoggerLevels
- * @package engine\includes\logger
+ * @package journalist\includes
  */
 final class LoggerLevels {
   const EMERGENCY = 1 << 0;

@@ -2,9 +2,12 @@
 
 include_once('includes/Module.inc');
 include_once('includes/loader/FileLoader.inc');
-include_once('includes/library/ConfigFile.inc');
+include_once('includes/setti/ConfigFile.inc');
 
-use engine\includes\library\SettiFile;
+use engine\includes\setti\SettiFile;
+use engine\includes\loader\exceptions\ClassNotFoundException;
+use engine\includes\loader\exceptions\FileIncludeException;
+use engine\includes\loader\exceptions\InvalidClassException;
 use engine\includes\loader\FileLoader;
 use engine\includes\Module;
 
@@ -19,8 +22,12 @@ final class Engine extends FileLoader
 {
   /**
    * Creates a new instance of the engine and simulates life cycle work.
+   * @return void
+   * @throws ClassNotFoundException
+   * @throws FileIncludeException
+   * @throws InvalidClassException
    */
-  public static function run()
+  public static function run(): void
   {
     $engine = new Engine(null);
     $engine->multiple('' /* global namespace */,

@@ -1,8 +1,8 @@
-<?php namespace engine\includes\logger;
+<?php namespace journalist\includes;
 
 /**
  * Interface LoggerInterface
- * @package engine\includes\logger
+ * @package journalist\includes
  */
 interface LoggerInterface {
   /**
