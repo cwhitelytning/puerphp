@@ -45,7 +45,7 @@ final class Environ
    */
   public function set(string $key, string ...$values): bool
   {
-    if ($result = is_null($this->variables[$key])) {
+    if ($result = !isset($this->variables[$key])) {
       $this->variables[$key] = self::absolute($this->format(...$values));
     }
     return $result;
