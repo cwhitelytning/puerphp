@@ -2,9 +2,6 @@
 
 use engine\includes\module\Module;
 
-include_once('LoggerInterface.inc');
-include_once('LoggerLevels.inc');
-
 /**
  * Class AbstractLogger combines sending a message into one function.
  * @package engine\includes\plugin\logger

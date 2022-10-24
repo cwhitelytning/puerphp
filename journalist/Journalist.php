@@ -1,10 +1,8 @@
 <?php namespace journalist;
 
-include_once('includes/AbstractLogger.inc');
-
+use engine\includes\plugin\logger\AbstractLogger;
+use engine\includes\plugin\logger\LoggerLevels;
 use engine\includes\setti\ConfigFile;
-use journalist\includes\AbstractLogger;
-use journalist\includes\LoggerLevels;
 
 /**
  * Class Journalist

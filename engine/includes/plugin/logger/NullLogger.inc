@@ -1,7 +1,5 @@
 <?php namespace engine\includes\plugin\logger;
 
-include_once('AbstractLogger.inc');
-
 /**
  * Class NullLogger
  * This Logger can be used to avoid conditional log calls.
