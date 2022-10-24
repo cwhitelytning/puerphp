@@ -1,26 +1,14 @@
-<?php namespace engine\includes\loader;
-
-include_once('exceptions/ClassNotFoundException.inc');
-include_once('exceptions/InvalidClassException.inc');
+<?php namespace engine\includes\factory;
 
 use Countable;
-use engine\includes\loader\exceptions\ClassNotFoundException;
-use engine\includes\loader\exceptions\InvalidClassException;
 use engine\includes\module\Module;
 
 /**
  * Class ModuleFactory stores all added modules.
- * Do not change the visibility of functions, this will disrupt the logic of protected storage.
- * @package engine\includes\loader
+ * @package engine\includes\factory
  */
 class ModuleFactory extends Module implements Countable
 {
-  /**
-   * Specifies the main class of the module from which all other modules should be inherited.
-   * It is necessary to check the module being added.
-   */
-  const MODULE_CLASSNAME = Module::class;
-
   /**
    * Contains modules.
    * @var Module[]
@@ -57,28 +45,6 @@ class ModuleFactory extends Module implements Countable
   }
 
   /**
-   * Creates a new instance of the class and adds it to the list of modules.
-   * @param string $classpath
-   * @return Module|null
-   * @throws ClassNotFoundException
-   * @throws InvalidClassException
-   */
-  final protected function import(string $classpath): ?Module
-  {
-    if ($this->search($classpath)) {
-      # An already loaded class will be ignored.
-      return null;
-    } elseif (class_exists($classpath)) {
-      if ($this->isValidClass($classpath)) {
-        return $this->add(new $classpath($this));
-      } else
-        throw new InvalidClassException($classpath);
-
-    } else
-      throw new ClassNotFoundException($classpath);
-  }
-
-  /**
    * Searches for a class from a list of all loaded modules, comparing their paths.
    * If the class is successfully found returns the module.
    * @param string $classname
@@ -108,23 +74,11 @@ class ModuleFactory extends Module implements Countable
   }
 
   /**
-   * Checks whether the class is valid for the loader.
-   * @param string $classname
-   * @return bool
-   */
-  private function isValidClass(string $classname): bool
-  {
-    $parents = class_parents($classname);
-    return isset($parents[static::MODULE_CLASSNAME]);
-  }
-
-  /**
    * Adds a module to the list of all modules.
-   * Returns null if the specified class name is already in the list.
    * @param Module $module
    * @return Module
    */
-  private function add(Module $module): Module
+  final protected function add(Module $module): Module
   {
     $name = $module->getInfo()->getName();
     return $this->modules[$name] = $module;

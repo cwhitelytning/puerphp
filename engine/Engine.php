@@ -1,6 +1,8 @@
 <?php namespace engine;
 
 include_once('includes/module/Module.inc');
+include_once('includes/factory/ModuleFactory.inc');
+
 include_once('includes/plugin/Plugin.inc');
 include_once('includes/setti/ConfigFile.inc');
 include_once('includes/loader/LocalModuleLoader.inc');
