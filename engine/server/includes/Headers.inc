@@ -1,10 +1,10 @@
-<?php namespace server\includes;
+<?php namespace engine\server\includes;
 
 use Countable;
 
 /**
  * Class Headers
- * @package server\includes
+ * @package engine\server\includes
  */
 class Headers implements Countable
 {

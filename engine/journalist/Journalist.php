@@ -1,4 +1,4 @@
-<?php namespace journalist;
+<?php namespace engine\journalist;
 
 use engine\includes\plugin\logger\AbstractLogger;
 use engine\includes\plugin\logger\LoggerLevels;
@@ -9,7 +9,7 @@ use engine\includes\setti\ConfigFile;
  * @author Clay Whitelytning
  * @version 1.1.1
  * @description File Logger
- * @package journalist
+ * @package engine\journalist
  */
 final class Journalist extends AbstractLogger
 {

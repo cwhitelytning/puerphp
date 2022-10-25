@@ -1,10 +1,10 @@
-<?php namespace server\includes;
+<?php namespace engine\server\includes;
 
 include_once('ContentInterface.inc');
 
 /**
  * Class Content
- * @package server\includes
+ * @package engine\server\includes
  */
 class Content implements ContentInterface
 {

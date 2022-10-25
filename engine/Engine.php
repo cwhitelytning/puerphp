@@ -1,11 +1,13 @@
 <?php namespace engine;
 
 include_once('includes/module/Module.inc');
+include_once('includes/loader/ModuleLoader.inc');
+
 include_once('includes/plugin/Plugin.inc');
 include_once('includes/setti/ConfigFile.inc');
-include_once('includes/loader/LocalModuleLoader.inc');
 
-use engine\includes\loader\LocalModuleLoader;
+use engine\includes\loader\ModuleLoader;
+use engine\includes\module\Module;
 use engine\includes\setti\SettiFile;
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
@@ -18,7 +20,7 @@ use engine\includes\loader\exceptions\InvalidClassException;
  * @author Clay Whitelytning
  * @version 1.1.1
  */
-final class Engine extends LocalModuleLoader
+final class Engine extends ModuleLoader
 {
   /**
    * Loads and initializes modules from modules.setti.
@@ -26,13 +28,17 @@ final class Engine extends LocalModuleLoader
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  protected function onModuleInit(): void
+  private function onModuleInit(): void
   {
-    if ($filenames = SettiFile::parseFile($this->getEnviron()->format('{configs}', 'modules.setti'))) {
-      foreach ($filenames as $filename) {
-        $this->loadFile($this->getEnviron()->get('root'), '' /* global namespace */, $filename);
-      }
-      parent::onModuleInit();
+    if ($names = SettiFile::parseFile($this->getEnviron()->format('{configs}', 'modules.setti'))) {
+      # Loading all local modules.
+      foreach ($names as $name) $this->loadClassFile($name);
+      # Initialization of all modules after loading.
+      $this->fetch(function (Module $module) {
+        if (method_exists($module, 'onModuleInit')) {
+          $module->onModuleInit();
+        }
+      });
     }
   }
 
@@ -50,5 +56,18 @@ final class Engine extends LocalModuleLoader
     # ----------------------------------------------------------------------------------------------------------------
     $engine->onModuleEnd();
     $engine = null;
+  }
+
+  /**
+   * Notification of all loaded modules about their unloading.
+   * @return void
+   */
+  private function onModuleEnd(): void
+  {
+    $this->fetch(function (Module $module) {
+      if (method_exists($module, 'onModuleEnd')) {
+        $module->onModuleEnd();
+      }
+    });
   }
 }

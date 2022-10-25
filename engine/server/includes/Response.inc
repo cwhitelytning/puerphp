@@ -1,8 +1,8 @@
-<?php namespace server\includes;
+<?php namespace engine\server\includes;
 
 /**
  * Class Response
- * @package server\includes
+ * @package engine\server\includes
  */
 final class Response {
   /**

@@ -1,4 +1,4 @@
-<?php namespace server;
+<?php namespace engine\server;
 
 include_once('includes/Status.inc');
 include_once('includes/Headers.inc');
@@ -7,17 +7,17 @@ include_once('includes/Content.inc');
 include_once('includes/Response.inc');
 
 use engine\includes\plugin\Plugin;
-use server\includes\Content;
-use server\includes\Headers;
-use server\includes\Response;
-use server\includes\Status;
+use engine\server\includes\Content;
+use engine\server\includes\Headers;
+use engine\server\includes\Response;
+use engine\server\includes\Status;
 
 /**
  * Class Server
  * @description Simple non-configurable server
  * @author Clay Whitelytning
  * @version 1.1.1
- * @package server
+ * @package engine\server
  */
 class Server extends Plugin
 {

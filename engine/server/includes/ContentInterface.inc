@@ -1,8 +1,8 @@
-<?php namespace server\includes;
+<?php namespace engine\server\includes;
 
 /**
  * Interface ContentInterface
- * @package server\includes
+ * @package engine\server\includes
  */
 interface ContentInterface
 {

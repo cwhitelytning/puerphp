@@ -16,10 +16,13 @@ include_once('exceptions/InvalidClassException.inc');
 class ModuleLoader extends Module
 {
   /**
-   * Specifies the main class of the module from which all other modules should be inherited.
-   * It is necessary to check the module being added.
+   * Specifies to the loader the base class from which all loaded classes should be inherited.
+   * If a class does not contain a base class in the class hierarchy, the loaded class is considered invalid.
+   *
+   * <b>It is not recommended to use another class that does not extend from the module class,
+   * this will cause incorrect behavior of the loader.</b>
    */
-  const MODULE_CLASSNAME = Module::class;
+  const MODULE_CLASS = Module::class;
 
   /**
    * Contains modules.
@@ -64,6 +67,21 @@ class ModuleLoader extends Module
   }
 
   /**
+   * Loads a class from a namespace that must match the directory structure in which the file is located.
+   * @param string $filename
+   * @return Module|null
+   * @throws ClassNotFoundException
+   * @throws IncludeException
+   * @throws InvalidClassException
+   */
+  protected function loadClassFile(string $filename): ?Module
+  {
+    $namespace = (new ReflectionClass($this))->getNamespaceName();
+    $filename = $this->getEnviron()->format('{dir}', strtolower($filename), "$filename.php");
+    return $this->loadClassFileFrom($filename, $namespace);
+  }
+
+  /**
    * Loads a class from a file including a file and importing a class from a namespace.
    * Class name is taken from the file name.
    * @param string $filename
@@ -73,7 +91,7 @@ class ModuleLoader extends Module
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  protected function loadClassFileFrom(string $filename, string $namespace): ?Module
+  private function loadClassFileFrom(string $filename, string $namespace): ?Module
   {
     if (@include_once($filename)) {
       $name = pathinfo($filename, PATHINFO_FILENAME);
@@ -90,7 +108,7 @@ class ModuleLoader extends Module
    * @throws ClassNotFoundException
    * @throws InvalidClassException
    */
-  final protected function importClass(string $class): ?Module
+  private function importClass(string $class): ?Module
   {
     if (class_exists($class)) {
       if ($this->isValidClass($class)) {
@@ -110,7 +128,7 @@ class ModuleLoader extends Module
   private function isValidClass(string $class): bool
   {
     $parents = class_parents($class);
-    return isset($parents[static::MODULE_CLASSNAME]);
+    return isset($parents[static::MODULE_CLASS]);
   }
 
   /**
