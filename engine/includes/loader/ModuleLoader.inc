@@ -4,6 +4,7 @@ use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
 use engine\includes\module\Module;
+use ReflectionClass;
 
 include_once('exceptions/ClassNotFoundException.inc');
 include_once('exceptions/InvalidClassException.inc');
@@ -27,15 +28,6 @@ class ModuleLoader extends Module
   private array $modules = [];
 
   /**
-   * Returns the number of modules.
-   * @return int
-   */
-  final public function count(): int
-  {
-    return count($this->modules);
-  }
-
-  /**
    * Returns the module.
    * @param string $name
    * @return Module|null
@@ -56,19 +48,6 @@ class ModuleLoader extends Module
   }
 
   /**
-   * Searches for a class from a list of all loaded modules, comparing their paths.
-   * If the class is successfully found returns the module.
-   * @param string $classname
-   * @return Module|null
-   */
-  final public function search(string $classname): ?Module
-  {
-    return $this->fetch(function (Module $module) use (&$classname) {
-      return $module->getInfo()->getClassname() == $classname;
-    });
-  }
-
-  /**
    * Extracts each Module and passes it to the callback function.
    * Iteration is stopped using the returned positive value.
    * If the iteration was stopped ahead of time,
@@ -85,18 +64,8 @@ class ModuleLoader extends Module
   }
 
   /**
-   * Adds a module to the list of all modules.
-   * @param Module $module
-   * @return Module
-   */
-  final protected function add(Module $module): Module
-  {
-    $name = $module->getInfo()->getName();
-    return $this->modules[$name] = $module;
-  }
-
-  /**
-   * Includes the file and imports the class into the list of all modules.
+   * Loads a class from a file including a file and importing a class from a namespace.
+   * Class name is taken from the file name.
    * @param string $filename
    * @param string $namespace
    * @return Module|null
@@ -104,11 +73,11 @@ class ModuleLoader extends Module
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  protected function loadClass(string $filename, string $namespace): ?Module
+  protected function loadClassFileFrom(string $filename, string $namespace): ?Module
   {
     if (@include_once($filename)) {
-      $classname = pathinfo($filename, PATHINFO_FILENAME);
-      return $this->import("$namespace\\$classname\\$classname");
+      $name = pathinfo($filename, PATHINFO_FILENAME);
+      return $this->import("$namespace\\$name\\$name");
     } else
       throw new IncludeException($filename);
   }
@@ -122,10 +91,7 @@ class ModuleLoader extends Module
    */
   final protected function import(string $classpath): ?Module
   {
-    if ($this->search($classpath)) {
-      # An already loaded class will be ignored.
-      return null;
-    } elseif (class_exists($classpath)) {
+    if (class_exists($classpath)) {
       if ($this->isValidClass($classpath)) {
         return $this->add(new $classpath($this));
       } else
@@ -144,5 +110,16 @@ class ModuleLoader extends Module
   {
     $parents = class_parents($classname);
     return isset($parents[static::MODULE_CLASSNAME]);
+  }
+
+  /**
+   * Adds a module to the list of all modules.
+   * @param Module $module
+   * @return Module
+   */
+  final protected function add(Module $module): Module
+  {
+    $name = (new ReflectionClass($module))->getShortName();
+    return $this->modules[$name] = $module;
   }
 }

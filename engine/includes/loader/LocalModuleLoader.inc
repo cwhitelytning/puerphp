@@ -40,7 +40,7 @@ class LocalModuleLoader extends ModuleLoader
   protected function loadFile(string $directory, string $namespace, string $classname): ?Module
   {
     $filename = $this->getEnviron()->collect($directory, strtolower($classname), "$classname.php");
-    return $this->loadClass($filename, $namespace);
+    return $this->loadClassFileFrom($filename, $namespace);
   }
 
   /**
