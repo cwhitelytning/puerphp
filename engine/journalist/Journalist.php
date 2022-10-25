@@ -1,16 +1,18 @@
 <?php namespace engine\journalist;
 
+use engine\includes\module\ModuleInfo;
 use engine\includes\plugin\logger\AbstractLogger;
 use engine\includes\plugin\logger\LoggerLevels;
 use engine\includes\setti\ConfigFile;
 
-/**
- * Class Journalist
- * @author Clay Whitelytning
- * @version 1.1.1
- * @description File Logger
- * @package engine\journalist
- */
+#[
+  ModuleInfo(
+    name: 'Journalist',
+    author: 'Clay Whitelytning',
+    version: '1.1.2',
+    description: 'File Logger'
+  )
+]
 final class Journalist extends AbstractLogger
 {
   /**

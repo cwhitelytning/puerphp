@@ -2,24 +2,25 @@
 
 include_once('includes/module/Module.inc');
 include_once('includes/loader/ModuleLoader.inc');
-
 include_once('includes/plugin/Plugin.inc');
 include_once('includes/setti/ConfigFile.inc');
 
 use engine\includes\loader\ModuleLoader;
 use engine\includes\module\Module;
+use engine\includes\module\ModuleInfo;
 use engine\includes\setti\SettiFile;
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
 
-/**
- * Class Engine
- * @package engine
- * @description Engine module loader
- * @author Clay Whitelytning
- * @version 1.1.1
- */
+#[
+  ModuleInfo(
+    name: 'Engine',
+    author: 'Clay Whitelytning',
+    version: '1.1.2',
+    description: 'Module Loader'
+  )
+]
 final class Engine extends ModuleLoader
 {
   /**

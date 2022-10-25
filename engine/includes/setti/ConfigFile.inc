@@ -47,9 +47,9 @@ final class ConfigFile extends SettiFile
   /**
    * Generates a file (if it does not exist)
    * or executes it by applying the values from the configuration to the registered variables.
-   * @param ModuleInfo $info
+   * @param array $info
    */
-  public function generateOrExecute(ModuleInfo $info): void
+  public function generateOrExecute(array $info): void
   {
     if (!$this->generate($info)) $this->execute();
   }
@@ -57,10 +57,10 @@ final class ConfigFile extends SettiFile
   /**
    * Automatically creates a configuration file (if not exists)
    * based on registered variables and added description.
-   * @param ModuleInfo $info used in the header of the file
+   * @param array $info used in the header of the file
    * @return bool if the file exists or an error occurred when creating the file returns false.
    */
-  public function generate(ModuleInfo $info): bool
+  public function generate(array $info): bool
   {
     $filename = $this->getFilename();
     if (!file_exists($filename)) {
@@ -69,9 +69,9 @@ final class ConfigFile extends SettiFile
       # Even if the file could not be created (there are no write permissions),
       # the plugin must solve this error on its own.
       if ($file = @fopen($filename, 'a+')) {
-        $name = $info->getName();
-        $author = $info->getAuthor() ?? 'unknown';
-        $version = $info->getVersion() ?? 'unknown';
+        $name = $info['name'] ?? 'unknown';
+        $author = $info['author'] ?? 'unknown';
+        $version = $info['version'] ?? 'unknown';
 
         fwrite($file, "; This file was automatically generated\n"
           ."; Configuration variables for plugin \"$name\" by \"$author\" (version \"$version\")\n\n"

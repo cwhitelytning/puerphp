@@ -6,19 +6,21 @@ include_once('includes/Methods.inc');
 include_once('includes/Content.inc');
 include_once('includes/Response.inc');
 
+use engine\includes\module\ModuleInfo;
 use engine\includes\plugin\Plugin;
 use engine\server\includes\Content;
 use engine\server\includes\Headers;
 use engine\server\includes\Response;
 use engine\server\includes\Status;
 
-/**
- * Class Server
- * @description Simple non-configurable server
- * @author Clay Whitelytning
- * @version 1.1.1
- * @package engine\server
- */
+#[
+  ModuleInfo(
+    name: 'Server',
+    author: 'Clay Whitelytning',
+    version: '1.1.2',
+    description: 'Simple non-configurable server'
+  )
+]
 class Server extends Plugin
 {
   /**

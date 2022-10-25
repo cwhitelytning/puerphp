@@ -4,6 +4,7 @@ include_once('ModuleInfo.inc');
 include_once('Environ.inc');
 
 use engine\includes\loader\ModuleLoader;
+use ReflectionClass;
 
 /**
  * Class Module
@@ -31,7 +32,7 @@ class Module
   {
     $this->environ = new Environ([
       # Path to the file of the current module.
-      'file' => $this->getInfo()->getFilename(),
+      'file' => (new ReflectionClass($this))->getFileName(),
       # Directory where the current module is located.
       'dir' => ['{file}', '..'],
       # Root directory is everything above the directory in which it is located.
@@ -45,11 +46,12 @@ class Module
 
   /**
    * Returns information about the class by parsing annotations to it.
-   * @return ModuleInfo
+   * @return array
    */
-  final protected function getInfo(): ModuleInfo
+  final protected function getInfo(): array
   {
-    return new ModuleInfo($this);
+    $attributes = (new ReflectionClass($this))->getAttributes(ModuleInfo::class);
+    return $attributes ? $attributes[0]->getArguments() : [];
   }
 
   /**
