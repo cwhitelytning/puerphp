@@ -77,38 +77,39 @@ class ModuleLoader extends Module
   {
     if (@include_once($filename)) {
       $name = pathinfo($filename, PATHINFO_FILENAME);
-      return $this->import("$namespace\\$name\\$name");
+      return $this->importClass("$namespace\\$name\\$name");
     } else
       throw new IncludeException($filename);
   }
 
   /**
-   * Creates a new instance of the class and adds it to the list of modules.
-   * @param string $classpath
+   * Imports a class from the path specified to it,
+   * creates a new instance and adds it to the list.
+   * @param string $class
    * @return Module|null
    * @throws ClassNotFoundException
    * @throws InvalidClassException
    */
-  final protected function import(string $classpath): ?Module
+  final protected function importClass(string $class): ?Module
   {
-    if (class_exists($classpath)) {
-      if ($this->isValidClass($classpath)) {
-        return $this->add(new $classpath($this));
+    if (class_exists($class)) {
+      if ($this->isValidClass($class)) {
+        return $this->add(new $class($this));
       } else
-        throw new InvalidClassException($classpath);
+        throw new InvalidClassException($class);
 
     } else
-      throw new ClassNotFoundException($classpath);
+      throw new ClassNotFoundException($class);
   }
 
   /**
    * Checks whether the class is valid for the loader.
-   * @param string $classname
+   * @param string $class
    * @return bool
    */
-  private function isValidClass(string $classname): bool
+  private function isValidClass(string $class): bool
   {
-    $parents = class_parents($classname);
+    $parents = class_parents($class);
     return isset($parents[static::MODULE_CLASSNAME]);
   }
 
@@ -117,7 +118,7 @@ class ModuleLoader extends Module
    * @param Module $module
    * @return Module
    */
-  final protected function add(Module $module): Module
+  private function add(Module $module): Module
   {
     $name = (new ReflectionClass($module))->getShortName();
     return $this->modules[$name] = $module;
