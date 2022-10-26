@@ -9,15 +9,15 @@ class ConfigFile
 {
   /**
    * Contains the path to the file.
-   * @var string
+   * @var string|null
    */
-  private string $filename;
+  private ?string $filename;
 
   /**
    * SettingsFile constructor.
-   * @param string $filename
+   * @param string|null $filename
    */
-  public function __construct(string $filename)
+  public function __construct(?string $filename = null)
   {
     $this->filename = $filename;
   }
@@ -25,9 +25,9 @@ class ConfigFile
   /**
    * Parses the contents of the configuration file and returns an array.
    * @param string $filename
-   * @return array|bool
+   * @return array|false
    */
-  final public static function parseFile(string $filename)
+  final public static function parseFile(string $filename): array|false
   {
     # If the file was opened, but there is no data, this is not an error.
     # If the file could not be opened, it means that it does not exist or there is no read access.
@@ -74,9 +74,10 @@ class ConfigFile
 
   /**
    * Returns the path to the file.
-   * @return string
+   * If the class is used for storage returns null.
+   * @return string|null
    */
-  final public function getFilename(): string
+  final public function getFilename(): ?string
   {
     return $this->filename;
   }

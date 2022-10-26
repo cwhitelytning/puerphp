@@ -1,11 +1,13 @@
 <?php namespace engine;
 
+include_once('includes/file/ConfigFile.inc');
+include_once('includes/file/VariableFile.inc');
+include_once('includes/file/EnvironFile.inc');
+
 include_once('includes/module/Module.inc');
 include_once('includes/loader/ModuleLoader.inc');
 include_once('includes/plugin/Plugin.inc');
-include_once('includes/file/VariableFile.inc');
 
-use engine\includes\file\ConfigFile;
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
@@ -24,26 +26,6 @@ use engine\includes\module\ModuleInfo;
 final class Engine extends ModuleLoader
 {
   /**
-   * Loads and initializes modules from modules.file.
-   * @throws ClassNotFoundException
-   * @throws IncludeException
-   * @throws InvalidClassException
-   */
-  private function onModuleInit(): void
-  {
-    if ($names = ConfigFile::parseFile($this->getEnviron()->format('{configs}', 'modules.conf'))) {
-      # Loading all local modules.
-      foreach ($names as $name) $this->loadClassFile($name);
-      # Initialization of all modules after loading.
-      $this->fetch(function (Module $module) {
-        if (method_exists($module, 'onModuleInit')) {
-          $module->onModuleInit();
-        }
-      });
-    }
-  }
-
-  /**
    * Creates a new instance of the engine and simulates life cycle work.
    * @return void
    * @throws ClassNotFoundException
@@ -57,6 +39,27 @@ final class Engine extends ModuleLoader
     # ----------------------------------------------------------------------------------------------------------------
     $engine->onModuleEnd();
     $engine = null;
+  }
+
+  /**
+   * Loads and initializes modules from modules.file.
+   * @throws ClassNotFoundException
+   * @throws IncludeException
+   * @throws InvalidClassException
+   */
+  private function onModuleInit(): void
+  {
+    $env = $this->getEnviron();
+    if ($names = $env::parseFile($env->format('{configs}', 'modules.conf'))) {
+      # Loading all local modules.
+      foreach ($names as $name) $this->loadClassFile($name);
+      # Initialization of all modules after loading.
+      $this->fetch(function (Module $module) {
+        if (method_exists($module, 'onModuleInit')) {
+          $module->onModuleInit();
+        }
+      });
+    }
   }
 
   /**

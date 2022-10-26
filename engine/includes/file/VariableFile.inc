@@ -1,7 +1,5 @@
 <?php namespace engine\includes\file;
 
-include_once('ConfigFile.inc');
-
 /**
  * Class VariableFile allows you to extract variables and their values from the configuration file.
  * @package engine\includes\file

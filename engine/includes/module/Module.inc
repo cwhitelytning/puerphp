@@ -1,8 +1,8 @@
 <?php namespace engine\includes\module;
 
 include_once('ModuleInfo.inc');
-include_once('Environ.inc');
 
+use engine\includes\file\EnvironFile;
 use engine\includes\loader\ModuleLoader;
 use ReflectionClass;
 
@@ -20,9 +20,9 @@ class Module
 
   /**
    * Contains registered paths.
-   * @var Environ
+   * @var EnvironFile
    */
-  private Environ $environ;
+  private EnvironFile $environ;
 
   /**
    * Module constructor.
@@ -30,7 +30,8 @@ class Module
    */
   final public function __construct(?ModuleLoader $loader)
   {
-    $this->environ = new Environ([
+    $this->environ = new EnvironFile();
+    $this->environ->append([
       # Path to the file of the current module.
       'file' => (new ReflectionClass($this))->getFileName(),
       # Directory where the current module is located.
@@ -74,10 +75,10 @@ class Module
   }
 
   /**
-   * Returns registered paths.
-   * @return Environ
+   * Returns the module's environment variables.
+   * @return EnvironFile
    */
-  final protected function getEnviron(): Environ
+  final protected function getEnviron(): EnvironFile
   {
     return $this->environ;
   }
