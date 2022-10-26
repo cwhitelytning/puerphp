@@ -1,4 +1,0 @@
-; This file is intended for automatic loading of modules.
-
-Journalist  ; File Logger
-Server      ; Simple non-configurable server

@@ -3,15 +3,15 @@
 include_once('includes/module/Module.inc');
 include_once('includes/loader/ModuleLoader.inc');
 include_once('includes/plugin/Plugin.inc');
-include_once('includes/setti/ConfigFile.inc');
+include_once('includes/file/VariableFile.inc');
 
-use engine\includes\loader\ModuleLoader;
-use engine\includes\module\Module;
-use engine\includes\module\ModuleInfo;
-use engine\includes\setti\SettiFile;
+use engine\includes\file\ConfigFile;
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
+use engine\includes\loader\ModuleLoader;
+use engine\includes\module\Module;
+use engine\includes\module\ModuleInfo;
 
 #[
   ModuleInfo(
@@ -24,14 +24,14 @@ use engine\includes\loader\exceptions\InvalidClassException;
 final class Engine extends ModuleLoader
 {
   /**
-   * Loads and initializes modules from modules.setti.
+   * Loads and initializes modules from modules.file.
    * @throws ClassNotFoundException
    * @throws IncludeException
    * @throws InvalidClassException
    */
   private function onModuleInit(): void
   {
-    if ($names = SettiFile::parseFile($this->getEnviron()->format('{configs}', 'modules.setti'))) {
+    if ($names = ConfigFile::parseFile($this->getEnviron()->format('{configs}', 'modules.conf'))) {
       # Loading all local modules.
       foreach ($names as $name) $this->loadClassFile($name);
       # Initialization of all modules after loading.

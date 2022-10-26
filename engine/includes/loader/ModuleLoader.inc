@@ -1,13 +1,15 @@
 <?php namespace engine\includes\loader;
 
+include_once('exceptions/LoaderException.inc');
+include_once('exceptions/IncludeException.inc');
+include_once('exceptions/InvalidClassException.inc');
+include_once('exceptions/ClassNotFoundException.inc');
+
 use engine\includes\loader\exceptions\ClassNotFoundException;
 use engine\includes\loader\exceptions\IncludeException;
 use engine\includes\loader\exceptions\InvalidClassException;
 use engine\includes\module\Module;
 use ReflectionClass;
-
-include_once('exceptions/ClassNotFoundException.inc');
-include_once('exceptions/InvalidClassException.inc');
 
 /**
  * Class ModuleLoader a universal class loader that allows you to load classes from anywhere.

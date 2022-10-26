@@ -1,11 +1,11 @@
-<?php namespace engine\includes\setti;
+<?php namespace engine\includes\file;
 
 /**
- * Class SettiFile it is a base class that is a function of parsing special files.
+ * Class ConfigFile it is a base class that is a function of parsing special files.
  * Such files can be a list, a configuration file in the form of a key and a parameter value, as well as sections.
- * @package engine\includes\setti
+ * @package engine\includes\file
  */
-class SettiFile
+class ConfigFile
 {
   /**
    * Contains the path to the file.
@@ -47,7 +47,7 @@ class SettiFile
 
     foreach ($strings as $string) {
       # Removing comments from the line:
-      if (($position = strpos($string, ';')) !== false) {
+      if ((($position = strpos($string, ';')) !== false) || (($position = strpos($string, '#')) !== false)) {
         $string = substr($string, 0, $position);
       }
 

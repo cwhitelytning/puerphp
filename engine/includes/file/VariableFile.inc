@@ -1,13 +1,12 @@
-<?php namespace engine\includes\setti;
+<?php namespace engine\includes\file;
 
-include_once('SettiFile.inc');
-use engine\includes\module\ModuleInfo;
+include_once('ConfigFile.inc');
 
 /**
- * Class ConfigFile allows you to extract variables and their values from the configuration file.
- * @package engine\includes\setti
+ * Class VariableFile allows you to extract variables and their values from the configuration file.
+ * @package engine\includes\file
  */
-final class ConfigFile extends SettiFile
+final class VariableFile extends ConfigFile
 {
   /**
    * Used to store configuration values.

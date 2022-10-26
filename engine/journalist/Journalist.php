@@ -3,7 +3,7 @@
 use engine\includes\module\ModuleInfo;
 use engine\includes\plugin\logger\AbstractLogger;
 use engine\includes\plugin\logger\LoggerLevels;
-use engine\includes\setti\ConfigFile;
+use engine\includes\file\VariableFile;
 
 #[
   ModuleInfo(
@@ -17,9 +17,9 @@ final class Journalist extends AbstractLogger
 {
   /**
    * Contains logging levels from the configuration file.
-   * @var ConfigFile
+   * @var VariableFile
    */
-  private ConfigFile $levels;
+  private VariableFile $levels;
 
   /**
    * Initializing the module.
@@ -31,11 +31,11 @@ final class Journalist extends AbstractLogger
 
   /**
    * Returns the configuration of the level.cfg file.
-   * @return ConfigFile
+   * @return VariableFile
    */
-  protected function getLevelsConfig(): ConfigFile
+  protected function getLevelsConfig(): VariableFile
   {
-    $config = new ConfigFile($this->getEnviron()->format('{configs}', 'levels.setti'));
+    $config = new VariableFile($this->getEnviron()->format('{configs}', 'levels.file'));
 
     $config->set('emergency', 1);
     $config->set('alert', 1);
