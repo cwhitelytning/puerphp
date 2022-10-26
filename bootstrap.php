@@ -4,8 +4,8 @@
  * If you only need to use the index file, rename it in the virtual host settings.
  */
 
-# Plugins are a separate part of the engine:
-require 'engine/Engine.php';
+# Plugins are a separate part of the core:
+require 'core/Core.php';
 
 # Required for automatic loading of plugins:
-engine\Engine::run();
+core\Core::run();
