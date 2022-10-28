@@ -10,6 +10,7 @@ use core\src\loader\exceptions\ClassNotFoundException;
 use core\src\loader\exceptions\IncludeException;
 use core\src\loader\exceptions\InvalidClassException;
 use core\src\loader\ModuleLoader;
+use core\src\plugin\Plugin;
 
 #[
   ModuleInfo
@@ -33,7 +34,7 @@ final class Core extends ModuleLoader
   {
     $engine = new Core(null);
     $engine->onModuleInit();
-    # ----------------------------------------------------------------------------------------------------------------
+    $engine->onPluginMain();
     $engine->onModuleEnd();
     $engine = null;
   }
@@ -71,6 +72,21 @@ final class Core extends ModuleLoader
     $this->fetch(function (Module $module) {
       if (method_exists($module, 'onModuleInit')) {
         $module->onModuleInit();
+      }
+    });
+  }
+
+  /**
+   * Calls the main function of plugins.
+   * @return void
+   */
+  private function onPluginMain(): void
+  {
+    $this->fetch(function (Module $plugin) {
+      if ($plugin instanceof Plugin) {
+        if (method_exists($plugin, 'onPluginMain')) {
+          $plugin->onPluginMain();
+        }
       }
     });
   }
