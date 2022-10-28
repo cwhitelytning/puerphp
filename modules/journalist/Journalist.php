@@ -26,7 +26,9 @@ final class Journalist extends AbstractLogger
   public function onModuleInit(): void
   {
     $env = $this->getEnviron();
-    if ($levels = @simplexml_load_file($env->format('{configs}', 'levels.xml'))) {
+    $env->set('LOGS_DIR', '{MODULE_DIR}', 'logs');
+
+    if ($levels = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'levels.xml'))) {
       foreach ($levels as $level) {
         $key = strtoupper((string)$level['name']);
         $this->levels[$key] = filter_var((string)$level['enabled'], FILTER_VALIDATE_BOOLEAN);
@@ -47,7 +49,7 @@ final class Journalist extends AbstractLogger
       $components[] = str_repeat(' ', 10 - strlen($components[0]));
       $components[] = $message;
 
-      $filename = $this->getEnviron()->format('{dir}', 'logs', 'L' . date('Ymd'));
+      $filename = $this->getEnviron()->format('{LOGS_DIR}', 'L' . date('Ymd'));
       $this->logMessage($filename, implode("\t", $components), $context);
     }
   }

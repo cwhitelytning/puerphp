@@ -49,22 +49,22 @@ final class Core extends ModuleLoader
     $env = $this->getEnviron();
     $env->append([
       # Above this module is the root directory.
-      'root' => ['{dir}', '..'],
+      'ROOT' => ['{MODULE_DIR}', '..'],
       # Directory for modules.
-      'modules' => ['{root}', 'modules'],
+      'MODULES_DIR' => ['{ROOT}', 'modules'],
       # Directory for plugins.
-      'plugins' => ['{root}', 'plugins']
+      'PLUGINS_DIR' => ['{ROOT}', 'plugins']
     ]);
 
-    if ($modules = @simplexml_load_file($env->format('{configs}', 'modules.xml'))) {
+    if ($modules = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'modules.xml'))) {
       foreach ($modules as $module) {
-        $this->loadClassFile($env->get('modules'), (string)$module['id'], 'modules');
+        $this->loadClassFile($env->get('MODULES_DIR'), (string)$module['id'], 'modules');
       }
     }
 
-    if ($plugins = @simplexml_load_file($env->format('{configs}', 'plugins.xml'))) {
+    if ($plugins = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'plugins.xml'))) {
       foreach ($plugins as $plugin) {
-        $this->loadClassFile($env->get('plugins'), (string)$plugin['id'], 'plugins');
+        $this->loadClassFile($env->get('PLUGINS_DIR'), (string)$plugin['id'], 'plugins');
       }
     }
 

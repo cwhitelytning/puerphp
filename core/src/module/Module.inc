@@ -33,11 +33,11 @@ class Module
     $this->environ = new Environ();
     $this->environ->append([
       # Path to the file of the current module.
-      'file' => (new ReflectionClass($this))->getFileName(),
+      'MODULE_FILE' => (new ReflectionClass($this))->getFileName(),
       # Directory where the current module is located.
-      'dir' => ['{file}', '..'],
+      'MODULE_DIR' => ['{MODULE_FILE}', '..'],
       # Directory of configuration files.
-      'configs' => ['{dir}', 'configs']
+      'CONFIGS_DIR' => ['{MODULE_DIR}', 'configs']
     ]);
 
     $this->setLoader($loader);
