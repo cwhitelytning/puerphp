@@ -70,16 +70,17 @@ class ModuleLoader extends Module
 
   /**
    * Loads a class from a namespace that must match the directory structure in which the file is located.
-   * @param string $filename
+   * @param string $directory in which the modules are located
+   * @param string $filename Classname -> filename (no extension) -> directory name.
+   * @param string $namespace in which the class to load will be searched for.
    * @return Module|null
    * @throws ClassNotFoundException
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  protected function loadClassFile(string $filename): ?Module
+  final protected function loadClassFile(string $directory, string $filename, string $namespace): ?Module
   {
-    $namespace = (new ReflectionClass($this))->getNamespaceName();
-    $filename = $this->getEnviron()->format('{dir}', strtolower($filename), "$filename.php");
+    $filename = $this->getEnviron()::collect($directory, strtolower($filename), "$filename.php");
     return $this->loadClassFileFrom($filename, $namespace);
   }
 

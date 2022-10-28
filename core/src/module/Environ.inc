@@ -1,10 +1,10 @@
-<?php namespace core\src\file;
+<?php namespace core\src\module;
 
 /**
  * Class EnvironFile used to store the module's environment variables.
- * @package core\src\file
+ * @package core\src\module
  */
-final class EnvironFile extends ConfigFile
+final class Environ
 {
   /**
    * Contains variables.
@@ -13,21 +13,11 @@ final class EnvironFile extends ConfigFile
   private array $vars = [];
 
   /**
-   * Loads variables from a file and returns a new instance.
-   * @param string $filename
-   * @return EnvironFile
-   */
-  public static function loadFromFile(string $filename): EnvironFile
-  {
-    return (new EnvironFile($filename))->append(self::parseFile($filename));
-  }
-
-  /**
    * Adds several variables from the array.
    * @param array $values
    * @return $this
    */
-  public function append(array $values): EnvironFile
+  public function append(array $values): Environ
   {
     foreach ($values as $key => $value) {
       $this->set($key, is_array($value) ? self::collect(...$value) : $value);

@@ -1,4 +1,4 @@
-<?php namespace core\server;
+<?php namespace plugins\server;
 
 include_once('src/Status.inc');
 include_once('src/Headers.inc');
@@ -8,13 +8,14 @@ include_once('src/Response.inc');
 
 use core\src\module\ModuleInfo;
 use core\src\plugin\Plugin;
-use core\server\src\Content;
-use core\server\src\Headers;
-use core\server\src\Response;
-use core\server\src\Status;
+use plugins\server\src\Content;
+use plugins\server\src\Headers;
+use plugins\server\src\Response;
+use plugins\server\src\Status;
 
 #[
-  ModuleInfo(
+  ModuleInfo
+  (
     name: 'Server',
     author: 'Clay Whitelytning',
     version: '1.1.3',

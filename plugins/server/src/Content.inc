@@ -1,25 +1,25 @@
-<?php namespace core\server\src;
+<?php namespace plugins\server\src;
 
-include_once('ContentInterface.inc');
+use Stringable;
 
 /**
  * Class Content
- * @package core\server\src
+ * @package plugins\server\src
  */
-class Content implements ContentInterface
+class Content implements Stringable
 {
   /**
    * Contains an array of ContentInterface.
-   * @var ContentInterface[]
+   * @var Stringable[]
    */
   private array $contents = [];
 
   /**
    * Sets or replaces the ContentInterface.
    * @param string $name
-   * @param ContentInterface $content
+   * @param Stringable $content
    */
-  function set(string $name, ContentInterface $content): void
+  function set(string $name, Stringable $content): void
   {
     $this->contents[$name] = $content;
   }
@@ -37,9 +37,9 @@ class Content implements ContentInterface
   /**
    * Returns ContentInterface.
    * @param string $name
-   * @return ContentInterface
+   * @return Stringable
    */
-  function get(string $name): ContentInterface
+  function get(string $name): Stringable
   {
     return $this->contents[$name];
   }

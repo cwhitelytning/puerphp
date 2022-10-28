@@ -1,12 +1,11 @@
-<?php namespace core\journalist;
+<?php namespace modules\journalist;
 
 use core\src\module\ModuleInfo;
-use core\src\file\VariableFile;
 use core\src\plugin\logger\AbstractLogger;
-use core\src\plugin\logger\LoggerLevels;
 
 #[
-  ModuleInfo(
+  ModuleInfo
+  (
     name: 'Journalist',
     author: 'Clay Whitelytning',
     version: '1.1.3',
@@ -16,51 +15,35 @@ use core\src\plugin\logger\LoggerLevels;
 final class Journalist extends AbstractLogger
 {
   /**
-   * Contains logging levels from the configuration file.
-   * @var VariableFile
+   * Contains level names and a boolean value.
+   * @var array
    */
-  private VariableFile $levels;
+  private array $levels;
 
   /**
    * Initializing the module.
    */
   public function onModuleInit(): void
   {
-    $this->levels = $this->getLevelsConfig();
-  }
-
-  /**
-   * Returns the configuration of the level.cfg file.
-   * @return VariableFile
-   */
-  protected function getLevelsConfig(): VariableFile
-  {
-    $config = new VariableFile($this->getEnviron()->format('{configs}', 'levels.file'));
-
-    $config->set('emergency', 1);
-    $config->set('alert', 1);
-    $config->set('critical', 1);
-    $config->set('error', 1);
-    $config->set('warning', 1);
-    $config->set('notice', 0);
-    $config->set('info', 0);
-    $config->set('debug', 0);
-    $config->generateOrExecute($this->getInfo());
-
-    return $config;
+    $env = $this->getEnviron();
+    if ($levels = @simplexml_load_file($env->format('{configs}', 'levels.xml'))) {
+      foreach ($levels as $level) {
+        $key = strtoupper((string)$level['name']);
+        $this->levels[$key] = filter_var((string)$level['enabled'], FILTER_VALIDATE_BOOLEAN);
+      }
+    }
   }
 
   /**
    * Writes a new message to the log.
-   * @param int $level
+   * @param string $level
    * @param string $message
    * @param array $context
    */
-  protected function log(int $level, string $message, array $context = [])
+  protected function log(string $level, string $message, array $context = [])
   {
-    $components[] = LoggerLevels::toString($level);
-    if ($this->levels->get(strtolower($components[0]))) {
-      # We add spaces to align the levels of different lengths.
+    if ($this->levels[$level]) {
+      $components[] = $level;
       $components[] = str_repeat(' ', 10 - strlen($components[0]));
       $components[] = $message;
 

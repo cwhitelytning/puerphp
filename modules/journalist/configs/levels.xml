@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<levels>
+    <level name="emergency" enabled="true"/>
+    <level name="alert" enabled="true"/>
+    <level name="critical" enabled="true"/>
+    <level name="error" enabled="true"/>
+    <level name="warning" enabled="true"/>
+    <level name="notice" enabled="false"/>
+    <level name="info" enabled="false"/>
+    <level name="debug" enabled="false"/>
+</levels>

@@ -1,8 +1,8 @@
-<?php namespace core\server\src;
+<?php namespace plugins\server\src;
 
 /**
  * Class Methods
- * @package core\server\src
+ * @package plugins\server\src
  */
 final class Methods {
   /**

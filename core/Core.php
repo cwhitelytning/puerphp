@@ -1,9 +1,5 @@
 <?php namespace core;
 
-include_once('src/file/ConfigFile.inc');
-include_once('src/file/VariableFile.inc');
-include_once('src/file/EnvironFile.inc');
-
 include_once('src/module/Module.inc');
 include_once('src/loader/ModuleLoader.inc');
 include_once('src/plugin/Plugin.inc');
@@ -16,7 +12,8 @@ use core\src\loader\exceptions\InvalidClassException;
 use core\src\loader\ModuleLoader;
 
 #[
-  ModuleInfo(
+  ModuleInfo
+  (
     name: 'Core',
     author: 'Clay Whitelytning',
     version: '1.1.3',
@@ -50,16 +47,32 @@ final class Core extends ModuleLoader
   private function onModuleInit(): void
   {
     $env = $this->getEnviron();
-    if ($names = $env::parseFile($env->format('{configs}', 'modules.conf'))) {
-      # Loading all local modules.
-      foreach ($names as $name) $this->loadClassFile($name);
-      # Initialization of all modules after loading.
-      $this->fetch(function (Module $module) {
-        if (method_exists($module, 'onModuleInit')) {
-          $module->onModuleInit();
-        }
-      });
+    $env->append([
+      # Above this module is the root directory.
+      'root' => ['{dir}', '..'],
+      # Directory for modules.
+      'modules' => ['{root}', 'modules'],
+      # Directory for plugins.
+      'plugins' => ['{root}', 'plugins']
+    ]);
+
+    if ($modules = @simplexml_load_file($env->format('{configs}', 'modules.xml'))) {
+      foreach ($modules as $module) {
+        $this->loadClassFile($env->get('modules'), (string)$module['id'], 'modules');
+      }
     }
+
+    if ($plugins = @simplexml_load_file($env->format('{configs}', 'plugins.xml'))) {
+      foreach ($plugins as $plugin) {
+        $this->loadClassFile($env->get('plugins'), (string)$plugin['id'], 'plugins');
+      }
+    }
+
+    $this->fetch(function (Module $module) {
+      if (method_exists($module, 'onModuleInit')) {
+        $module->onModuleInit();
+      }
+    });
   }
 
   /**
