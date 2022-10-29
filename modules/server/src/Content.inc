@@ -1,10 +1,10 @@
-<?php namespace plugins\server\src;
+<?php namespace modules\server\src;
 
 use Stringable;
 
 /**
  * Class Content
- * @package plugins\server\src
+ * @package modules\server\src
  */
 class Content implements Stringable
 {

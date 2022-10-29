@@ -1,10 +1,10 @@
-<?php namespace plugins\server\src;
+<?php namespace modules\server\src;
 
 use Countable;
 
 /**
  * Class Headers
- * @package plugins\server\src
+ * @package modules\server\src
  */
 class Headers implements Countable
 {
