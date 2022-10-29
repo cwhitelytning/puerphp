@@ -1,0 +1,27 @@
+<?php namespace modules\designer\src\dom;
+
+use modules\designer\src\Node;
+
+/**
+ * Class DOMDocument
+ * @package modules\designer\src\dom
+ */
+class DOMDocument extends Node
+{
+  /**
+   * DOMDocument constructor.
+   * @param string $doctype
+   */
+  public function __construct(public readonly string $doctype)
+  {
+  }
+
+  /**
+   * Returns a string.
+   * @return string
+   */
+  final public function __toString(): string
+  {
+    return "<!DOCTYPE $this->doctype>" . parent::__toString();
+  }
+}

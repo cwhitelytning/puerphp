@@ -2,4 +2,5 @@
 <modules>
     <module id="Journalist"/>
     <module id="Server"/>
+    <module id="Designer"/>
 </modules>
