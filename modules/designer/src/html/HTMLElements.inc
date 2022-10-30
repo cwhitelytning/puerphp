@@ -15,7 +15,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function header(array $attributes = [], ?string $value = null): XMLEntity
+  public static function header(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('header', $attributes, $value);
   }
@@ -28,7 +28,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function b(array $attributes = [], ?string $value = null): XMLEntity
+  public static function b(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('b', $attributes, $value);
   }
@@ -40,7 +40,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function div(array $attributes = [], ?string $value = null): XMLEntity
+  public static function div(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('div', $attributes, $value);
   }
@@ -50,7 +50,7 @@ final class HTMLElements
    * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br
    * @return XMLEntity
    */
-  public function br(): XMLEntity
+  public static function br(): XMLEntity
   {
     return new XMLEntity('br');
   }
@@ -62,7 +62,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function area(array $attributes = [], ?string $value = null): XMLEntity
+  public static function area(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('area', $attributes, $value);
   }
@@ -74,7 +74,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function data(array $attributes = [], ?string $value = null): XMLEntity
+  public static function data(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('data', $attributes, $value);
   }
@@ -86,7 +86,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function time(array $attributes = [], ?string $value = null): XMLEntity
+  public static function time(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('time', $attributes, $value);
   }
@@ -98,7 +98,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function blockquote(array $attributes = [], ?string $value = null): XMLEntity
+  public static function blockquote(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('blockquote', $attributes, $value);
   }
@@ -111,7 +111,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function button(array $attributes = [], ?string $value = null): XMLEntity
+  public static function button(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('button', $attributes, $value);
   }
@@ -123,7 +123,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function canvas(array $attributes = [], ?string $value = null): XMLEntity
+  public static function canvas(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('canvas', $attributes, $value);
   }
@@ -135,7 +135,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function caption(array $attributes = [], ?string $value = null): XMLEntity
+  public static function caption(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('caption', $attributes, $value);
   }
@@ -148,7 +148,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function dd(array $attributes = [], ?string $value = null): XMLEntity
+  public static function dd(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('dd', $attributes, $value);
   }
@@ -160,7 +160,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function cite(array $attributes = [], ?string $value = null): XMLEntity
+  public static function cite(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('cite', $attributes, $value);
   }
@@ -173,7 +173,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function col(array $attributes = [], ?string $value = null): XMLEntity
+  public static function col(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('col', $attributes, $value);
   }
@@ -185,7 +185,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function colgroup(array $attributes = [], ?string $value = null): XMLEntity
+  public static function colgroup(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('colgroup', $attributes, $value);
   }
@@ -197,7 +197,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function dfn(array $attributes = [], ?string $value = null): XMLEntity
+  public static function dfn(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('dfn', $attributes, $value);
   }
@@ -209,7 +209,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function em(array $attributes = [], ?string $value = null): XMLEntity
+  public static function em(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('em', $attributes, $value);
   }
@@ -221,7 +221,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function embed(array $attributes = [], ?string $value = null): XMLEntity
+  public static function embed(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('embed', $attributes, $value);
   }
@@ -234,7 +234,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function figcaption(array $attributes = [], ?string $value = null): XMLEntity
+  public static function figcaption(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('figcaption', $attributes, $value);
   }
@@ -246,7 +246,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function figure(array $attributes = [], ?string $value = null): XMLEntity
+  public static function figure(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('figure', $attributes, $value);
   }
@@ -257,7 +257,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function form(array $attributes = []): XMLEntity
+  public static function form(array $attributes = []): XMLEntity
   {
     return new XMLEntity('form', $attributes);
   }
@@ -269,7 +269,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function hgroup(array $attributes = [], ?string $value = null): XMLEntity
+  public static function hgroup(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('hgroup', $attributes, $value);
   }
@@ -281,7 +281,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function hr(array $attributes = []): XMLEntity
+  public static function hr(array $attributes = []): XMLEntity
   {
     return new XMLEntity('hr', $attributes);
   }
@@ -294,7 +294,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function menu(array $attributes = [], ?string $value = null): XMLEntity
+  public static function menu(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('menu', $attributes, $value);
   }
@@ -306,7 +306,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function ol(array $attributes = [], ?string $value = null): XMLEntity
+  public static function ol(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('ol', $attributes, $value);
   }
@@ -319,7 +319,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function pre(array $attributes = [], ?string $value = null): XMLEntity
+  public static function pre(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('pre', $attributes, $value);
   }
@@ -332,7 +332,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function i(array $attributes = [], ?string $value = null): XMLEntity
+  public static function i(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('i', $attributes, $value);
   }
@@ -344,7 +344,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function iframe(array $attributes = [], ?string $value = null): XMLEntity
+  public static function iframe(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('iframe', $attributes, $value);
   }
@@ -355,7 +355,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function img(array $attributes = []): XMLEntity
+  public static function img(array $attributes = []): XMLEntity
   {
     return new XMLEntity('img', $attributes);
   }
@@ -367,7 +367,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function input(array $attributes = []): XMLEntity
+  public static function input(array $attributes = []): XMLEntity
   {
     return new XMLEntity('input', $attributes);
   }
@@ -379,7 +379,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function label(array $attributes = [], ?string $value = null): XMLEntity
+  public static function label(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('label', $attributes, $value);
   }
@@ -391,7 +391,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function legend(array $attributes = [], ?string $value = null): XMLEntity
+  public static function legend(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('legend', $attributes, $value);
   }
@@ -403,7 +403,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function meter(array $attributes = [], ?string $value = null): XMLEntity
+  public static function meter(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('meter', $attributes, $value);
   }
@@ -415,7 +415,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function optgroup(array $attributes = [], ?string $value = null): XMLEntity
+  public static function optgroup(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('optgroup', $attributes, $value);
   }
@@ -427,7 +427,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function option(array $attributes = [], ?string $value = null): XMLEntity
+  public static function option(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('option', $attributes, $value);
   }
@@ -439,7 +439,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function output(array $attributes = [], ?string $value = null): XMLEntity
+  public static function output(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('output', $attributes, $value);
   }
@@ -452,7 +452,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function progress(array $attributes = [], ?string $value = null): XMLEntity
+  public static function progress(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('progress', $attributes, $value);
   }
@@ -464,7 +464,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function select(array $attributes = [], ?string $value = null): XMLEntity
+  public static function select(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('select', $attributes, $value);
   }
@@ -478,7 +478,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function textarea(array $attributes = [], ?string $value = null): XMLEntity
+  public static function textarea(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('textarea', $attributes, $value);
   }
@@ -490,7 +490,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function ins(array $attributes = [], ?string $value = null): XMLEntity
+  public static function ins(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('ins', $attributes, $value);
   }
@@ -502,7 +502,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function del(array $attributes = [], ?string $value = null): XMLEntity
+  public static function del(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('del', $attributes, $value);
   }
@@ -514,7 +514,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function fieldset(array $attributes = [], ?string $value = null): XMLEntity
+  public static function fieldset(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('fieldset', $attributes, $value);
   }
@@ -527,7 +527,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function table(array $attributes = [], ?string $value = null): XMLEntity
+  public static function table(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('table', $attributes, $value);
   }
@@ -539,7 +539,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function thead(array $attributes = [], ?string $value = null): XMLEntity
+  public static function thead(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('thead', $attributes, $value);
   }
@@ -552,7 +552,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function tbody(array $attributes = [], ?string $value = null): XMLEntity
+  public static function tbody(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('tbody', $attributes, $value);
   }
@@ -564,7 +564,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function audio(array $attributes = [], ?string $value = null): XMLEntity
+  public static function audio(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('audio', $attributes, $value);
   }
@@ -576,7 +576,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function aside(array $attributes = [], ?string $value = null): XMLEntity
+  public static function aside(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('aside', $attributes, $value);
   }
@@ -589,7 +589,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function article(array $attributes = [], ?string $value = null): XMLEntity
+  public static function article(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('article', $attributes, $value);
   }
@@ -601,7 +601,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function map(array $attributes = [], ?string $value = null): XMLEntity
+  public static function map(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('map', $attributes, $value);
   }
@@ -614,7 +614,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function slot(array $attributes = [], ?string $value = null): XMLEntity
+  public static function slot(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('slot', $attributes, $value);
   }
@@ -627,7 +627,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function small(array $attributes = [], ?string $value = null): XMLEntity
+  public static function small(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('small', $attributes, $value);
   }
@@ -639,7 +639,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function span(array $attributes = [], ?string $value = null): XMLEntity
+  public static function span(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('span', $attributes, $value);
   }
@@ -651,7 +651,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function strong(array $attributes = [], ?string $value = null): XMLEntity
+  public static function strong(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('strong', $attributes, $value);
   }
@@ -663,7 +663,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function sub(array $attributes = [], ?string $value = null): XMLEntity
+  public static function sub(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('sub', $attributes, $value);
   }
@@ -675,7 +675,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function summary(array $attributes = [], ?string $value = null): XMLEntity
+  public static function summary(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('summary', $attributes, $value);
   }
@@ -687,7 +687,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function details(array $attributes = [], ?string $value = null): XMLEntity
+  public static function details(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('details', $attributes, $value);
   }
@@ -699,7 +699,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function sup(array $attributes = [], ?string $value = null): XMLEntity
+  public static function sup(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('sup', $attributes, $value);
   }
@@ -711,7 +711,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function var(array $attributes = [], ?string $value = null): XMLEntity
+  public static function var(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('var', $attributes, $value);
   }
@@ -723,7 +723,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function td(array $attributes = [], ?string $value = null): XMLEntity
+  public static function td(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('td', $attributes, $value);
   }
@@ -736,7 +736,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function template(array $attributes = [], ?string $value = null): XMLEntity
+  public static function template(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('template', $attributes, $value);
   }
@@ -748,7 +748,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function tr(array $attributes = [], ?string $value = null): XMLEntity
+  public static function tr(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('tr', $attributes, $value);
   }
@@ -760,7 +760,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function tfoot(array $attributes = [], ?string $value = null): XMLEntity
+  public static function tfoot(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('tfoot', $attributes, $value);
   }
@@ -772,7 +772,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function th(array $attributes = [], ?string $value = null): XMLEntity
+  public static function th(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('th', $attributes, $value);
   }
@@ -784,7 +784,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function h1(array $attributes = [], ?string $value = null): XMLEntity
+  public static function h1(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('h1', $attributes, $value);
   }
@@ -796,7 +796,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function h2(array $attributes = [], ?string $value = null): XMLEntity
+  public static function h2(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('h2', $attributes, $value);
   }
@@ -808,7 +808,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function h3(array $attributes = [], ?string $value = null): XMLEntity
+  public static function h3(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('h3', $attributes, $value);
   }
@@ -820,7 +820,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function h4(array $attributes = [], ?string $value = null): XMLEntity
+  public static function h4(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('h4', $attributes, $value);
   }
@@ -832,7 +832,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function h5(array $attributes = [], ?string $value = null): XMLEntity
+  public static function h5(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('h5', $attributes, $value);
   }
@@ -844,7 +844,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function h6(array $attributes = [], ?string $value = null): XMLEntity
+  public static function h6(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('h6', $attributes, $value);
   }
@@ -856,7 +856,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function p(array $attributes = [], ?string $value = null): XMLEntity
+  public static function p(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('p', $attributes, $value);
   }
@@ -868,7 +868,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function ul(array $attributes = [], ?string $value = null): XMLEntity
+  public static function ul(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('ul', $attributes, $value);
   }
@@ -880,7 +880,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function u(array $attributes = [], ?string $value = null): XMLEntity
+  public static function u(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('u', $attributes, $value);
   }
@@ -893,7 +893,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function wbr(array $attributes = [], ?string $value = null): XMLEntity
+  public static function wbr(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('wbr', $attributes, $value);
   }
@@ -906,7 +906,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function kbd(array $attributes = [], ?string $value = null): XMLEntity
+  public static function kbd(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('kbd', $attributes, $value);
   }
@@ -918,7 +918,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function code(array $attributes = [], ?string $value = null): XMLEntity
+  public static function code(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('code', $attributes, $value);
   }
@@ -930,7 +930,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function li(array $attributes = [], ?string $value = null): XMLEntity
+  public static function li(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('li', $attributes, $value);
   }
@@ -942,7 +942,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function bdi(array $attributes = [], ?string $value = null): XMLEntity
+  public static function bdi(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('bdi', $attributes, $value);
   }
@@ -954,7 +954,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function bdo(array $attributes = [], ?string $value = null): XMLEntity
+  public static function bdo(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('bdo', $attributes, $value);
   }
@@ -966,7 +966,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function a(array $attributes = [], ?string $value = null): XMLEntity
+  public static function a(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('a', $attributes, $value);
   }
@@ -978,7 +978,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function abbr(array $attributes = [], ?string $value = null): XMLEntity
+  public static function abbr(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('abbr', $attributes, $value);
   }
@@ -991,7 +991,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function nav(array $attributes = [], ?string $value = null): XMLEntity
+  public static function nav(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('nav', $attributes, $value);
   }
@@ -1004,7 +1004,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function object(array $attributes = [], ?string $value = null): XMLEntity
+  public static function object(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('object', $attributes, $value);
   }
@@ -1016,7 +1016,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function source(array $attributes = [], ?string $value = null): XMLEntity
+  public static function source(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('source', $attributes, $value);
   }
@@ -1028,7 +1028,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function track(array $attributes = [], ?string $value = null): XMLEntity
+  public static function track(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('track', $attributes, $value);
   }
@@ -1040,7 +1040,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function video(array $attributes = [], ?string $value = null): XMLEntity
+  public static function video(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('video', $attributes, $value);
   }
@@ -1052,7 +1052,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function q(array $attributes = [], ?string $value = null): XMLEntity
+  public static function q(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('q', $attributes, $value);
   }
@@ -1065,7 +1065,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function rp(array $attributes = [], ?string $value = null): XMLEntity
+  public static function rp(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('rp', $attributes, $value);
   }
@@ -1078,7 +1078,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function rt(array $attributes = [], ?string $value = null): XMLEntity
+  public static function rt(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('rt', $attributes, $value);
   }
@@ -1090,7 +1090,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function s(array $attributes = [], ?string $value = null): XMLEntity
+  public static function s(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('s', $attributes, $value);
   }
@@ -1102,7 +1102,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function samp(array $attributes = [], ?string $value = null): XMLEntity
+  public static function samp(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('samp', $attributes, $value);
   }
@@ -1115,7 +1115,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function section(array $attributes = [], ?string $value = null): XMLEntity
+  public static function section(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('section', $attributes, $value);
   }
@@ -1128,7 +1128,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function ruby(array $attributes = [], ?string $value = null): XMLEntity
+  public static function ruby(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('ruby', $attributes, $value);
   }
@@ -1141,7 +1141,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function picture(array $attributes = [], ?string $value = null): XMLEntity
+  public static function picture(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('picture', $attributes, $value);
   }
@@ -1154,7 +1154,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function noscript(array $attributes = [], ?string $value = null): XMLEntity
+  public static function noscript(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('noscript', $attributes, $value);
   }
@@ -1166,7 +1166,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function address(array $attributes = [], ?string $value = null): XMLEntity
+  public static function address(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('address', $attributes, $value);
   }
@@ -1178,7 +1178,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function footer(array $attributes = [], ?string $value = null): XMLEntity
+  public static function footer(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('footer', $attributes, $value);
   }
@@ -1191,7 +1191,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function script(array $attributes = [], ?string $value = null): XMLEntity
+  public static function script(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('script', $attributes, $value);
   }
@@ -1202,7 +1202,7 @@ final class HTMLElements
    * @param string|null $value
    * @return XMLEntity
    */
-  public function style(?string $value = null): XMLEntity
+  public static function style(?string $value = null): XMLEntity
   {
     return new XMLEntity('style', ['type' => 'text/css'], $value);
   }
@@ -1212,7 +1212,7 @@ final class HTMLElements
    * @param string $value
    * @return XMLEntity
    */
-  public function title(string $value): XMLEntity
+  public static function title(string $value): XMLEntity
   {
     return new XMLEntity('title', [], $value);
   }
@@ -1224,7 +1224,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function meta(array $attributes): XMLEntity
+  public static function meta(array $attributes): XMLEntity
   {
     return new XMLEntity('meta', $attributes);
   }
@@ -1237,7 +1237,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function base(array $attributes = [], ?string $value = null): XMLEntity
+  public static function base(array $attributes = [], ?string $value = null): XMLEntity
   {
     return new XMLEntity('base', $attributes, $value);
   }
@@ -1248,7 +1248,7 @@ final class HTMLElements
    * @param array $attributes
    * @return XMLEntity
    */
-  public function link(array $attributes): XMLEntity
+  public static function link(array $attributes): XMLEntity
   {
     return new XMLEntity('link', $attributes);
   }
