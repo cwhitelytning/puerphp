@@ -83,12 +83,10 @@ final class Core extends ModuleLoader
   private function onPluginMain(): void
   {
     $this->fetch(function (Module $plugin) {
-      if ($plugin instanceof Plugin) {
-        if (method_exists($plugin, 'onPluginMain')) {
-          $plugin->onPluginMain();
-        }
+      if (method_exists($plugin, 'onPluginMain')) {
+        $plugin->onPluginMain();
       }
-    });
+    }, Plugin::class);
   }
 
   /**

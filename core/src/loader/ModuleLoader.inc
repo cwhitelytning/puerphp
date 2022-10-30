@@ -58,12 +58,15 @@ class ModuleLoader extends Module
    * If the iteration was stopped ahead of time,
    * it returns the current extracted module.
    * @param callable $callable
+   * @param string $class filter modules
    * @return Module|null
    */
-  final public function fetch(callable $callable): ?Module
+  final public function fetch(callable $callable, string $class = self::MODULE_CLASS): ?Module
   {
     foreach ($this->modules as $module) {
-      if ($callable($module)) return $module;
+      if ($module instanceof $class) {
+        if ($callable($module)) return $module;
+      }
     }
     return null;
   }
