@@ -3,7 +3,7 @@
 use Exception;
 
 /**
- * Class ModuleException
+ * Class LoaderException
  * @package core\src\loader\exceptions
  */
 class LoaderException extends Exception {}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- This file is loaded automatically and is required to determine the core environment paths. -->
+<paths>
+    <!-- Root directory must be extracted from the directory where the core is located. -->
+    <path name="ROOT_DIR" value="{LIBRARY_DIR}/.."/>
+    <!-- Library directory must be located in the root directory. -->
+    <path name="LIBS_DIR" value="{ROOT_DIR}/libs"/>
+</paths>

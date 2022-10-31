@@ -1,26 +1,26 @@
 <?php namespace core;
 
-include_once('src/module/Module.inc');
-include_once('src/loader/ModuleLoader.inc');
+include_once('src/library/Library.inc');
+include_once('src/loader/LibraryLoader.inc');
 include_once('src/plugin/Plugin.inc');
 
-use core\src\module\Module;
-use core\src\module\ModuleInfo;
+use core\src\library\Library;
+use core\src\library\LibraryInfo;
 use core\src\loader\exceptions\ClassNotFoundException;
 use core\src\loader\exceptions\IncludeException;
 use core\src\loader\exceptions\InvalidClassException;
-use core\src\loader\ModuleLoader;
+use core\src\loader\LibraryLoader;
 use core\src\plugin\Plugin;
 
 #[
-  ModuleInfo
+  LibraryInfo
   (
     author: 'Clay Whitelytning',
     version: '1.1.3',
-    description: 'Module Loader'
+    description: 'Master Library Loader'
   )
 ]
-final class Core extends ModuleLoader
+final class Core extends LibraryLoader
 {
   /**
    * Creates a new instance of the core and simulates life cycle work.
@@ -32,49 +32,37 @@ final class Core extends ModuleLoader
   public static function run(): void
   {
     $engine = new Core(null);
-    $engine->onModuleInit();
+    $engine->onLibraryInit();
     $engine->onPluginMain();
-    $engine->onModuleEnd();
+    $engine->onLibraryEnd();
     $engine = null;
   }
 
   /**
-   * Loads and initializes modules from modules.file.
+   * Loads and initializes libraries.
    * @throws ClassNotFoundException
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  private function onModuleInit(): void
+  private function onLibraryInit(): void
   {
     $env = $this->getEnviron();
-    $env->append([
-      # Above this module is the root directory.
-      'ROOT' => ['{MODULE_DIR}', '..'],
-      # Directory for modules.
-      'MODULES_DIR' => ['{ROOT}', 'modules'],
-      # Directory for plugins.
-      'PLUGINS_DIR' => ['{ROOT}', 'plugins']
-    ]);
+    # It is expected after adding to see two additional variables ROOT_DIR and LIBS_DIR.
+    # * ROOT_DIR - must be extracted from the path where the core is located.
+    # * LIBS_DIR - must be in the root directory.
+    $env->append($env->getPathsFromFile($env->format('{CONFIGS_DIR}', 'envs.xml'), 2));
 
-    if ($modules = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'modules.xml'))) {
-      foreach ($modules as $module) {
-        $group = (string)$module['group'];
-        $directory = $env::collect($env->get('MODULES_DIR'), $group);
-        $this->loadClassFile($directory, (string)$module['id'], "modules\\$group");
+    if ($libs = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'libs.xml'))) {
+      foreach ($libs as $lib) {
+        $group = (string)$lib['group'];
+        $directory = $env::collect($env->get('LIBS_DIR'), $group);
+        $this->loadClassFile($directory, (string)$lib['id'], "libs\\$group");
       }
     }
 
-    if ($plugins = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'plugins.xml'))) {
-      foreach ($plugins as $plugin) {
-        $group = (string)$plugin['group'];
-        $directory = $env::collect($env->get('PLUGINS_DIR'), $group);
-        $this->loadClassFile($directory, (string)$plugin['id'], "plugins\\$group");
-      }
-    }
-
-    $this->fetch(function (Module $module) {
-      if (method_exists($module, 'onModuleInit')) {
-        $module->onModuleInit();
+    $this->each(function (Library $library) {
+      if (method_exists($library, 'onLibraryInit')) {
+        $library->onLibraryInit();
       }
     });
   }
@@ -85,7 +73,7 @@ final class Core extends ModuleLoader
    */
   private function onPluginMain(): void
   {
-    $this->fetch(function (Module $plugin) {
+    $this->each(function (Library $plugin) {
       if (method_exists($plugin, 'onPluginMain')) {
         $plugin->onPluginMain();
       }
@@ -96,11 +84,11 @@ final class Core extends ModuleLoader
    * Notification of all loaded modules about their unloading.
    * @return void
    */
-  private function onModuleEnd(): void
+  private function onLibraryEnd(): void
   {
-    $this->fetch(function (Module $module) {
-      if (method_exists($module, 'onModuleEnd')) {
-        $module->onModuleEnd();
+    $this->each(function (Library $library) {
+      if (method_exists($library, 'onLibraryEnd')) {
+        $library->onLibraryEnd();
       }
     });
   }
