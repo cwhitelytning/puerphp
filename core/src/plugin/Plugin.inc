@@ -24,7 +24,7 @@ class Plugin extends Library
   /**
    * Plugin initializing.
    */
-  public function onModuleInit()
+  public function initialization()
   {
     $this->logger = $this->findLogger() ?? new NullLogger(null);
   }

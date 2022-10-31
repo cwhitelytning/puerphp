@@ -3,14 +3,7 @@
 use core\src\library\LibraryInfo;
 use core\src\plugin\logger\AbstractLogger;
 
-#[
-  LibraryInfo
-  (
-    author: 'Clay Whitelytning',
-    version: '1.1.3',
-    description: 'File Logger'
-  )
-]
+#[LibraryInfo('Clay Whitelytning', '1.1.3', 'File Logger')]
 final class Journalist extends AbstractLogger
 {
   /**
@@ -22,7 +15,7 @@ final class Journalist extends AbstractLogger
   /**
    * Initializing the module.
    */
-  public function onLibraryInit(): void
+  public function initialization(): void
   {
     $env = $this->getEnviron();
     $env->set('LOGS_DIR', '{LIBRARY_DIR}', 'logs');

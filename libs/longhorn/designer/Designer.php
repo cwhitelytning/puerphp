@@ -13,14 +13,7 @@ include_once('src/html/HTMLDocument.inc');
 use core\src\library\Library;
 use core\src\library\LibraryInfo;
 
-#[
-  LibraryInfo
-  (
-    author: 'Clay Whitelytning',
-    version: '1.1.3',
-    description: 'Dynamic page creation using XML and HTML markup'
-  )
-]
+#[LibraryInfo('Clay Whitelytning', '1.1.3', 'Dynamic page creation using XML and HTML markup')]
 final class Designer extends Library
 {
 }

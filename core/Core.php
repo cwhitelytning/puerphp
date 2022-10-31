@@ -12,14 +12,7 @@ use core\src\loader\exceptions\InvalidClassException;
 use core\src\loader\LibraryLoader;
 use core\src\plugin\Plugin;
 
-#[
-  LibraryInfo
-  (
-    author: 'Clay Whitelytning',
-    version: '1.1.3',
-    description: 'Master Library Loader'
-  )
-]
+#[LibraryInfo('Clay Whitelytning', '1.1.3', 'Master Library Loader')]
 final class Core extends LibraryLoader
 {
   /**
@@ -32,9 +25,9 @@ final class Core extends LibraryLoader
   public static function run(): void
   {
     $engine = new Core(null);
-    $engine->onLibraryInit();
-    $engine->onPluginMain();
-    $engine->onLibraryEnd();
+    $engine->initialization();
+    $engine->main();
+    $engine->finalization();
     $engine = null;
   }
 
@@ -44,7 +37,7 @@ final class Core extends LibraryLoader
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  private function onLibraryInit(): void
+  private function initialization(): void
   {
     $env = $this->getEnviron();
     # It is expected after adding to see two additional variables ROOT_DIR and LIBS_DIR.
@@ -56,14 +49,16 @@ final class Core extends LibraryLoader
       foreach ($libs as $lib) {
         $group = (string)$lib['group'];
         $directory = $env::collect($env->get('LIBS_DIR'), $group);
-        $this->loadClassFile($directory, (string)$lib['id'], "libs\\$group");
+        if ($library = $this->loadClassFile($directory, (string)$lib['id'], "libs\\$group")) {
+          # Called when the class is loaded and created.
+          if (method_exists($library, 'create')) { $library->create(); }
+        }
       }
     }
 
     $this->each(function (Library $library) {
-      if (method_exists($library, 'onLibraryInit')) {
-        $library->onLibraryInit();
-      }
+      # Called after all libraries have been created.
+      if (method_exists($library, 'initialization')) { $library->initialization(); }
     });
   }
 
@@ -71,12 +66,10 @@ final class Core extends LibraryLoader
    * Calls the main function of plugins.
    * @return void
    */
-  private function onPluginMain(): void
+  private function main(): void
   {
     $this->each(function (Library $plugin) {
-      if (method_exists($plugin, 'onPluginMain')) {
-        $plugin->onPluginMain();
-      }
+      if (method_exists($plugin, 'main')) { $plugin->main(); }
     }, Plugin::class);
   }
 
@@ -84,11 +77,11 @@ final class Core extends LibraryLoader
    * Notification of all loaded modules about their unloading.
    * @return void
    */
-  private function onLibraryEnd(): void
+  private function finalization(): void
   {
     $this->each(function (Library $library) {
-      if (method_exists($library, 'onLibraryEnd')) {
-        $library->onLibraryEnd();
+      if (method_exists($library, 'finalization')) {
+        $library->finalization();
       }
     });
   }

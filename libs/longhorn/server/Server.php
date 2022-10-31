@@ -13,14 +13,7 @@ use libs\longhorn\server\src\Headers;
 use libs\longhorn\server\src\Response;
 use libs\longhorn\server\src\Status;
 
-#[
-  LibraryInfo
-  (
-    author: 'Clay Whitelytning',
-    version: '1.1.3',
-    description: 'Simple non-configurable server'
-  )
-]
+#[LibraryInfo('Clay Whitelytning', '1.1.3', 'Simple non-configurable server')]
 class Server extends Library
 {
   /**
@@ -33,7 +26,7 @@ class Server extends Library
    * Server initialization.
    * @return void
    */
-  public function onLibraryInit(): void
+  public function initialization(): void
   {
     $this->response = new Response(new Status(Status::HTTP_NOT_FOUND), new Headers(), new Content());
   }
@@ -42,7 +35,7 @@ class Server extends Library
    * Unloading the server.
    * @return void
    */
-  public function onLibraryEnd(): void
+  public function finalization(): void
   {
     http_response_code($this->response->getStatus()->getCode());
     if ($headers = $this->response->getHeaders()->toStrings()) {
