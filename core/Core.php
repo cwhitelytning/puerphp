@@ -15,7 +15,6 @@ use core\src\plugin\Plugin;
 #[
   ModuleInfo
   (
-    name: 'Core',
     author: 'Clay Whitelytning',
     version: '1.1.3',
     description: 'Module Loader'

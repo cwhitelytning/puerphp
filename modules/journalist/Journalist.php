@@ -6,7 +6,6 @@ use core\src\plugin\logger\AbstractLogger;
 #[
   ModuleInfo
   (
-    name: 'Journalist',
     author: 'Clay Whitelytning',
     version: '1.1.3',
     description: 'File Logger'

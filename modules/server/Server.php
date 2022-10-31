@@ -16,7 +16,6 @@ use modules\server\src\Status;
 #[
   ModuleInfo
   (
-    name: 'Server',
     author: 'Clay Whitelytning',
     version: '1.1.3',
     description: 'Simple non-configurable server'

@@ -49,8 +49,14 @@ class Module
    */
   final protected function getInfo(): array
   {
-    $attributes = (new ReflectionClass($this))->getAttributes(ModuleInfo::class);
-    return $attributes ? $attributes[0]->getArguments() : [];
+    $arguments = [];
+    $reflection = new ReflectionClass($this);
+
+    if ($attributes = $reflection->getAttributes(ModuleInfo::class)) {
+      $arguments = $attributes[0]->getArguments();
+      $arguments['name'] = $reflection->getShortName();
+    }
+    return $arguments;
   }
 
   /**

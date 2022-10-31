@@ -144,7 +144,7 @@ class ModuleLoader extends Module
    */
   private function add(Module $module): Module
   {
-    $name = (new ReflectionClass($module))->getShortName();
+    $name = $module->getInfo()['name'];
     return $this->modules[$name] = $module;
   }
 }

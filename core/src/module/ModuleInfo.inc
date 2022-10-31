@@ -9,7 +9,7 @@ use Attribute;
 #[Attribute(Attribute::TARGET_CLASS)]
 final class ModuleInfo
 {
-  public function __construct(public string $name, public string $author, public string $version, public string $description)
+  public function __construct(public string $author, public string $version, public string $description)
   {
   }
 }

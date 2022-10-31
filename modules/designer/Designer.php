@@ -16,7 +16,6 @@ use core\src\module\ModuleInfo;
 #[
   ModuleInfo
   (
-    name: 'Designer',
     author: 'Clay Whitelytning',
     version: '1.1.3',
     description: 'Dynamic page creation using XML and HTML markup'
