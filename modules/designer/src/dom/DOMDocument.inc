@@ -12,7 +12,7 @@ class DOMDocument extends Node
    * DOMDocument constructor.
    * @param string $doctype
    */
-  public function __construct(public readonly string $doctype)
+  public function __construct(private string $doctype)
   {
   }
 

@@ -14,6 +14,6 @@ final class XMLComment extends XMLString
    */
   public function __toString(): string
   {
-    return "<!-- $this->value -->";
+    return '<!-- ' . parent::__toString() . ' -->';
   }
 }

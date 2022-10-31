@@ -13,7 +13,7 @@ class XMLDocument extends Node
    * @param string $version
    * @param string $encoding
    */
-  public function __construct(public readonly string $version, public readonly string $encoding)
+  public function __construct(private string $version, private string $encoding)
   {
   }
 

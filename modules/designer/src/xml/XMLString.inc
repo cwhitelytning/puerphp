@@ -12,7 +12,7 @@ class XMLString implements EntityInterface
    * XMLComment constructor.
    * @param string $value
    */
-  public function __construct(public readonly string $value)
+  public function __construct(private string $value)
   {
   }
 

@@ -32,7 +32,7 @@ class HTMLDocument extends DOMDocument
    * HTMLDocument constructor.
    * @param string $lang
    */
-  public function __construct(public readonly string $lang)
+  public function __construct(string $lang)
   {
     parent::__construct('html');
 

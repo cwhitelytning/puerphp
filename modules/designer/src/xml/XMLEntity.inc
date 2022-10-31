@@ -15,10 +15,8 @@ class XMLEntity extends Node
    * @param string|null $value
    * @param int $options
    */
-  public function __construct(public readonly string $name,
-                              public readonly array $attrs = [],
-                              public readonly ?string $value = null,
-                              public readonly int $options = 0)
+  public function __construct(private string $name, private array $attrs = [],
+                              private ?string $value = null, private int $options = 0)
   {
   }
 
