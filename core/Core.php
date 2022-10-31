@@ -58,13 +58,17 @@ final class Core extends ModuleLoader
 
     if ($modules = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'modules.xml'))) {
       foreach ($modules as $module) {
-        $this->loadClassFile($env->get('MODULES_DIR'), (string)$module['id'], 'modules');
+        $group = (string)$module['group'];
+        $directory = $env::collect($env->get('MODULES_DIR'), $group);
+        $this->loadClassFile($directory, (string)$module['id'], "modules\\$group");
       }
     }
 
     if ($plugins = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'plugins.xml'))) {
       foreach ($plugins as $plugin) {
-        $this->loadClassFile($env->get('PLUGINS_DIR'), (string)$plugin['id'], 'plugins');
+        $group = (string)$plugin['group'];
+        $directory = $env::collect($env->get('PLUGINS_DIR'), $group);
+        $this->loadClassFile($directory, (string)$plugin['id'], "plugins\\$group");
       }
     }
 

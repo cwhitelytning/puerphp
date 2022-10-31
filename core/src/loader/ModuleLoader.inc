@@ -9,7 +9,6 @@ use core\src\module\Module;
 use core\src\loader\exceptions\ClassNotFoundException;
 use core\src\loader\exceptions\IncludeException;
 use core\src\loader\exceptions\InvalidClassException;
-use ReflectionClass;
 
 /**
  * Class ModuleLoader a universal class loader that allows you to load classes from anywhere.

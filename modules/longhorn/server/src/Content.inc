@@ -1,10 +1,10 @@
-<?php namespace modules\server\src;
+<?php namespace modules\longhorn\server\src;
 
 use Stringable;
 
 /**
  * Class Content
- * @package modules\server\src
+ * @package modules\longhorn\server\src
  */
 class Content implements Stringable
 {
@@ -25,11 +25,11 @@ class Content implements Stringable
   }
 
   /**
-   * Checks if a ContentInterface exists.
+   * Checks if a ContainInterface with the given name exists.
    * @param string $name
    * @return bool
    */
-  function exists(string $name): bool
+  function has(string $name): bool
   {
     return isset($this->contents[$name]);
   }
@@ -50,6 +50,6 @@ class Content implements Stringable
    */
   function __toString(): string
   {
-    return implode('', $this->contents);
+    return implode($this->contents);
   }
 }

@@ -1,10 +1,10 @@
-<?php namespace modules\designer\src\html;
+<?php namespace modules\longhorn\designer\src\html;
 
-use modules\designer\src\xml\XMLEntity;
+use modules\longhorn\designer\src\xml\XMLEntity;
 
 /**
  * Class HTMLElements contains HTML tags that simplify the creation of XML entities.
- * @package modules\designer\src\html
+ * @package modules\longhorn\designer\src\html
  */
 final class HTMLElements
 {

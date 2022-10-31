@@ -1,4 +1,4 @@
-<?php namespace modules\server;
+<?php namespace modules\longhorn\server;
 
 include_once('src/Status.inc');
 include_once('src/Headers.inc');
@@ -8,10 +8,10 @@ include_once('src/Response.inc');
 
 use core\src\module\Module;
 use core\src\module\ModuleInfo;
-use modules\server\src\Content;
-use modules\server\src\Headers;
-use modules\server\src\Response;
-use modules\server\src\Status;
+use modules\longhorn\server\src\Content;
+use modules\longhorn\server\src\Headers;
+use modules\longhorn\server\src\Response;
+use modules\longhorn\server\src\Status;
 
 #[
   ModuleInfo

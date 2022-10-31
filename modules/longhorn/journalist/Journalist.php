@@ -1,4 +1,4 @@
-<?php namespace modules\journalist;
+<?php namespace modules\longhorn\journalist;
 
 use core\src\module\ModuleInfo;
 use core\src\plugin\logger\AbstractLogger;

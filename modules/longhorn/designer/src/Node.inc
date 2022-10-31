@@ -1,10 +1,10 @@
-<?php namespace modules\designer\src;
+<?php namespace modules\longhorn\designer\src;
 
 use Countable;
 
 /**
  * Class Node can contain nested nodes.
- * @package modules\designer\src
+ * @package modules\longhorn\designer\src
  */
 class Node implements EntityInterface, Countable
 {

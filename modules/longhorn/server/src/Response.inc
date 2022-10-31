@@ -1,8 +1,8 @@
-<?php namespace modules\server\src;
+<?php namespace modules\longhorn\server\src;
 
 /**
  * Class Response
- * @package modules\server\src
+ * @package modules\longhorn\server\src
  */
 final class Response {
   /**

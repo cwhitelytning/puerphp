@@ -1,10 +1,10 @@
-<?php namespace modules\designer\src\xml;
+<?php namespace modules\longhorn\designer\src\xml;
 
-use modules\designer\src\Node;
+use modules\longhorn\designer\src\Node;
 
 /**
  * Class XMLEntity underlying XML entity that is used to create the elements of a document.
- * @package modules\designer\src\xml
+ * @package modules\longhorn\designer\src\xml
  */
 class XMLEntity extends Node
 {

@@ -1,4 +1,4 @@
-<?php namespace modules\designer;
+<?php namespace modules\longhorn\designer;
 
 include_once('src/EntityInterface.inc');
 include_once('src/Node.inc');

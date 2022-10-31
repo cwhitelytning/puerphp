@@ -1,10 +1,10 @@
-<?php namespace modules\server\src;
+<?php namespace modules\longhorn\server\src;
 
 use Countable;
 
 /**
  * Class Headers
- * @package modules\server\src
+ * @package modules\longhorn\server\src
  */
 class Headers implements Countable
 {
