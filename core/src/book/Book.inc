@@ -27,7 +27,7 @@ class Book
    * Book constructor.
    * @param BookLoader|null $loader
    */
-  final public function __construct(?BookLoader $loader)
+  public function __construct(?BookLoader $loader)
   {
     $this->environ = (new Environ())->append([
       # Path to the file of the current book.

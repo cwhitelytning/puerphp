@@ -6,6 +6,7 @@ include_once('logger/AbstractLogger.inc');
 include_once('logger/NullLogger.inc');
 
 use core\src\book\Book;
+use core\src\loader\BookLoader;
 use core\src\plugin\logger\LoggerInterface;
 use core\src\plugin\logger\NullLogger;
 
@@ -17,15 +18,17 @@ class Plugin extends Book
 {
   /**
    * Contains logger.
-   * @var Book
+   * @var LoggerInterface
    */
-  private Book $logger;
+  private LoggerInterface $logger;
 
   /**
-   * Plugin initializing.
+   * Plugin constructor.
+   * @param BookLoader|null $loader
    */
-  public function initialization()
+  final public function __construct(?BookLoader $loader)
   {
+    parent::__construct($loader);
     $this->logger = $this->findLogger() ?? new NullLogger(null);
   }
 
@@ -38,8 +41,7 @@ class Plugin extends Book
   {
     if ($loader = $this->getLoader()) {
       return $loader->each(function (Book $book) {
-        $implements = class_implements($book);
-        return isset($implements[LoggerInterface::class]);
+        return $book instanceof LoggerInterface;
       });
     }
     return null;
@@ -47,9 +49,9 @@ class Plugin extends Book
 
   /**
    * Returns the logger.
-   * @return Book
+   * @return LoggerInterface
    */
-  final protected function getLogger(): Book
+  final protected function getLogger(): LoggerInterface
   {
     return $this->logger;
   }
