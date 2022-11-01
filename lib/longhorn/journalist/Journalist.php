@@ -1,9 +1,11 @@
 <?php namespace lib\longhorn\journalist;
 
-use core\src\book\BookInfo;
 use core\src\plugin\logger\AbstractLogger;
 
-#[BookInfo('Clay Whitelytning', '1.1.3', 'File Logger')]
+/**
+ * Class Journalist
+ * @package lib\longhorn\journalist
+ */
 final class Journalist extends AbstractLogger
 {
   /**
@@ -20,7 +22,7 @@ final class Journalist extends AbstractLogger
     $env = $this->getEnviron();
     $env->set('LOGS_DIR', '{BOOK_DIR}', 'logs');
 
-    if ($levels = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'levels.xml'))) {
+    if ($levels = @simplexml_load_file($env->format('{CONF_DIR}', 'levels.xml'))) {
       foreach ($levels as $level) {
         $key = strtoupper((string)$level['name']);
         $this->levels[$key] = filter_var((string)$level['enabled'], FILTER_VALIDATE_BOOLEAN);

@@ -11,9 +11,11 @@ include_once('src/dom/DOMDocument.inc');
 include_once('src/html/HTMLDocument.inc');
 
 use core\src\book\Book;
-use core\src\book\BookInfo;
 
-#[BookInfo('Clay Whitelytning', '1.1.3', 'Dynamic page creation using XML and HTML markup')]
+/**
+ * Class Designer
+ * @package lib\longhorn\designer
+ */
 final class Designer extends Book
 {
 }

@@ -3,10 +3,10 @@
 use lib\longhorn\designer\src\xml\XMLEntity;
 
 /**
- * Class HTMLElements contains HTML tags that simplify the creation of XML entities.
+ * Class HTMLEntities contains HTML tags that simplify the creation of XML entities.
  * @package lib\longhorn\designer\src\html
  */
-final class HTMLElements
+final class HTMLEntities
 {
   /**
    * Adds ann element represents introductory content, typically a group of introductory or navigational aids.

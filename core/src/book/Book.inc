@@ -1,6 +1,5 @@
 <?php namespace core\src\book;
 
-include_once('BookInfo.inc');
 include_once('Environ.inc');
 
 use core\src\loader\BookLoader;
@@ -36,26 +35,10 @@ class Book
       # Directory where the current book is located.
       'BOOK_DIR' => ['{BOOK_FILE}', '..'],
       # Directory of configuration files.
-      'CONFIGS_DIR' => ['{BOOK_DIR}', 'configs']
+      'CONF_DIR' => ['{BOOK_DIR}', 'conf']
     ]);
 
     $this->setLoader($loader);
-  }
-
-  /**
-   * Returns information about the class by parsing annotations to it.
-   * @return array
-   */
-  final protected function getInfo(): array
-  {
-    $arguments = [];
-    $reflection = new ReflectionClass($this);
-
-    if ($attributes = $reflection->getAttributes(BookInfo::class)) {
-      $arguments = $attributes[0]->getArguments();
-      $arguments['name'] = $reflection->getShortName();
-    }
-    return $arguments;
   }
 
   /**

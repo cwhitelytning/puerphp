@@ -5,22 +5,19 @@ include_once('src/loader/BookLoader.inc');
 include_once('src/plugin/Plugin.inc');
 
 use core\src\book\Book;
-use core\src\book\BookInfo;
-use core\src\loader\exceptions\ClassNotFoundException;
-use core\src\loader\exceptions\IncludeException;
-use core\src\loader\exceptions\InvalidClassException;
 use core\src\loader\BookLoader;
+use core\src\loader\exceptions\LoaderException;
 use core\src\plugin\Plugin;
 
-#[BookInfo('Clay Whitelytning', '1.1.3', 'Master Book Loader')]
+/**
+ * Class Core
+ * @package core
+ */
 final class Core extends BookLoader
 {
   /**
    * Creates a new instance of the core and simulates life cycle work.
    * @return void
-   * @throws ClassNotFoundException
-   * @throws IncludeException
-   * @throws InvalidClassException
    */
   public static function run(): void
   {
@@ -33,9 +30,6 @@ final class Core extends BookLoader
 
   /**
    * Loads and initializes books.
-   * @throws ClassNotFoundException
-   * @throws IncludeException
-   * @throws InvalidClassException
    */
   private function initialization(): void
   {
@@ -43,13 +37,18 @@ final class Core extends BookLoader
     # It is expected after adding to see two additional variables ROOT_DIR and LIB_DIR.
     # * ROOT_DIR - directory can be used by books.
     # * LIB_DIR - directory from which books are loaded.
-    $env->append($env->getPathsFromFile($env->format('{CONFIGS_DIR}', 'envs.xml'), 2));
+    $env->append($env->getPathsFromFile($env->format('{CONF_DIR}', 'paths.xml'), 2));
 
-    if ($libs = @simplexml_load_file($env->format('{CONFIGS_DIR}', 'books.xml'))) {
+    if ($libs = @simplexml_load_file($env->format('{CONF_DIR}', 'books.xml'))) {
       foreach ($libs as $lib) {
         $group = (string)$lib['group'];
         $directory = $env::collect($env->get('LIB_DIR'), $group);
-        $this->loadClassFile($directory, (string)$lib['id'], "lib\\$group");
+
+        try {
+          $this->loadClassFile($directory, (string)$lib['id'], "lib\\$group");
+        } catch (LoaderException $exception) {
+          trigger_error($exception, E_USER_WARNING);
+        }
       }
     }
 

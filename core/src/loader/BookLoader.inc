@@ -33,22 +33,22 @@ class BookLoader extends Book
 
   /**
    * Returns the book.
-   * @param string $name
+   * @param int $index
    * @return Book|null
    */
-  final public function get(string $name): ?Book
+  final public function get(int $index): ?Book
   {
-    return $this->has($name) ? $this->books[$name] : null;
+    return $this->books[$index];
   }
 
   /**
    * Checks if the specified book class is present in the loader.
-   * @param string $name
+   * @param int $index
    * @return bool
    */
-  final public function has(string $name): bool
+  final public function has(int $index): bool
   {
-    return isset($this->books[$name]);
+    return isset($this->books[$index]);
   }
 
   /**
@@ -143,7 +143,6 @@ class BookLoader extends Book
    */
   private function add(Book $book): Book
   {
-    $name = $book->getInfo()['name'];
-    return $this->books[$name] = $book;
+    return $this->books[] = $book;
   }
 }
