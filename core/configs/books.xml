@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- This file is loaded automatically and is required for automatic loading of books. -->
+<books>
+    <book group="longhorn" id="journalist"/>
+    <book group="longhorn" id="server"/>
+    <book group="longhorn" id="designer"/>
+</books>

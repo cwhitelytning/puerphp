@@ -1,12 +1,12 @@
 <?php namespace core\src\plugin\logger;
 
-use core\src\library\Library;
+use core\src\book\Book;
 
 /**
  * Class AbstractLogger combines sending a message into one function.
  * @package core\src\plugin\logger
  */
-abstract class AbstractLogger extends Library implements LoggerInterface
+abstract class AbstractLogger extends Book implements LoggerInterface
 {
   /**
    * Writes a message to the log with the emergency level.

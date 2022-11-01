@@ -5,7 +5,7 @@ include_once('logger/LoggerLevels.inc');
 include_once('logger/AbstractLogger.inc');
 include_once('logger/NullLogger.inc');
 
-use core\src\library\Library;
+use core\src\book\Book;
 use core\src\plugin\logger\LoggerInterface;
 use core\src\plugin\logger\NullLogger;
 
@@ -13,13 +13,13 @@ use core\src\plugin\logger\NullLogger;
  * Class Plugin
  * @package core\src\plugin
  */
-class Plugin extends Library
+class Plugin extends Book
 {
   /**
    * Contains logger.
-   * @var Library
+   * @var Book
    */
-  private Library $logger;
+  private Book $logger;
 
   /**
    * Plugin initializing.
@@ -30,15 +30,15 @@ class Plugin extends Library
   }
 
   /**
-   * Searches for a module implementing the Logger Interface.
-   * If successful, returns the first found module.
-   * @return Library|null
+   * Searches for a book implementing the Logger Interface.
+   * If successful, returns the first found book.
+   * @return Book|null
    */
-  private function findLogger(): ?Library
+  private function findLogger(): ?Book
   {
     if ($loader = $this->getLoader()) {
-      return $loader->each(function (Library $library) {
-        $implements = class_implements($library);
+      return $loader->each(function (Book $book) {
+        $implements = class_implements($book);
         return isset($implements[LoggerInterface::class]);
       });
     }
@@ -47,9 +47,9 @@ class Plugin extends Library
 
   /**
    * Returns the logger.
-   * @return Library
+   * @return Book
    */
-  final protected function getLogger(): Library
+  final protected function getLogger(): Book
   {
     return $this->logger;
   }
