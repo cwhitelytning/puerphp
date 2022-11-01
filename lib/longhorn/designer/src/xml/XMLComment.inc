@@ -1,8 +1,8 @@
-<?php namespace lib\longhorn\designer\src\xml;
+<?php namespace longhorn\designer\src\xml;
 
 /**
  * Class XMLComment represents an entity in the form of a comment.
- * @package lib\longhorn\designer\src\xml
+ * @package longhorn\designer\src\xml
  */
 final class XMLComment extends XMLString
 {

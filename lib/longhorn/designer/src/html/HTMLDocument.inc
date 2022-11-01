@@ -1,12 +1,12 @@
-<?php namespace lib\longhorn\designer\src\html;
+<?php namespace longhorn\designer\src\html;
 
-use lib\longhorn\designer\src\dom\DOMDocument;
-use lib\longhorn\designer\src\EntityInterface;
-use lib\longhorn\designer\src\xml\XMLEntity;
+use longhorn\designer\src\dom\DOMDocument;
+use longhorn\designer\src\EntityInterface;
+use longhorn\designer\src\xml\XMLEntity;
 
 /**
  * Class HTMLDocument
- * @package lib\longhorn\designer\src\html
+ * @package longhorn\designer\src\html
  */
 class HTMLDocument extends DOMDocument
 {

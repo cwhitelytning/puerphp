@@ -1,4 +1,4 @@
-<?php namespace lib\longhorn\designer;
+<?php namespace longhorn\designer;
 
 include_once('src/EntityInterface.inc');
 include_once('src/Node.inc');
@@ -14,7 +14,7 @@ use core\src\book\Book;
 
 /**
  * Class Designer
- * @package lib\longhorn\designer
+ * @package longhorn\designer
  */
 final class Designer extends Book
 {

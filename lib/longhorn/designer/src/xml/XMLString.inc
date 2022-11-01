@@ -1,10 +1,10 @@
-<?php namespace lib\longhorn\designer\src\xml;
+<?php namespace longhorn\designer\src\xml;
 
-use lib\longhorn\designer\src\EntityInterface;
+use longhorn\designer\src\EntityInterface;
 
 /**
  * Class XMLString represents an entity as a string (no tags).
- * @package lib\longhorn\designer\src\xml
+ * @package longhorn\designer\src\xml
  */
 class XMLString implements EntityInterface
 {

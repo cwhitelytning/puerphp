@@ -1,10 +1,10 @@
-<?php namespace lib\longhorn\server\src;
+<?php namespace longhorn\server\src;
 
 use Stringable;
 
 /**
  * Class Content
- * @package lib\longhorn\server\src
+ * @package longhorn\server\src
  */
 class Content implements Stringable
 {

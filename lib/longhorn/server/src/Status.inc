@@ -1,8 +1,8 @@
-<?php namespace lib\longhorn\server\src;
+<?php namespace longhorn\server\src;
 
 /**
  * Class Status
- * @package lib\longhorn\server\src
+ * @package longhorn\server\src
  */
 final class Status
 {

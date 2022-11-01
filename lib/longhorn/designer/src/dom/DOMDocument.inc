@@ -1,10 +1,10 @@
-<?php namespace lib\longhorn\designer\src\dom;
+<?php namespace longhorn\designer\src\dom;
 
-use lib\longhorn\designer\src\Node;
+use longhorn\designer\src\Node;
 
 /**
  * Class DOMDocument
- * @package lib\longhorn\designer\src\dom
+ * @package longhorn\designer\src\dom
  */
 class DOMDocument extends Node
 {

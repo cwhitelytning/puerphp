@@ -1,11 +1,11 @@
-<?php namespace lib\longhorn\designer\src;
+<?php namespace longhorn\designer\src;
 
 use Countable;
 use Stringable;
 
 /**
  * Class Entity
- * @package lib\longhorn\designer\src
+ * @package longhorn\designer\src
  */
 interface EntityInterface extends Stringable
 {

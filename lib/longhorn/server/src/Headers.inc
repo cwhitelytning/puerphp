@@ -1,10 +1,10 @@
-<?php namespace lib\longhorn\server\src;
+<?php namespace longhorn\server\src;
 
 use Countable;
 
 /**
  * Class Headers
- * @package lib\longhorn\server\src
+ * @package longhorn\server\src
  */
 class Headers implements Countable
 {

@@ -1,4 +1,4 @@
-<?php namespace lib\longhorn\server;
+<?php namespace longhorn\server;
 
 include_once('src/Status.inc');
 include_once('src/Headers.inc');
@@ -7,13 +7,15 @@ include_once('src/Content.inc');
 include_once('src/Response.inc');
 
 use core\src\book\Book;
-use core\src\book\BookInfo;
-use lib\longhorn\server\src\Content;
-use lib\longhorn\server\src\Headers;
-use lib\longhorn\server\src\Response;
-use lib\longhorn\server\src\Status;
+use longhorn\server\src\Content;
+use longhorn\server\src\Headers;
+use longhorn\server\src\Response;
+use longhorn\server\src\Status;
 
-#[BookInfo('Clay Whitelytning', '1.1.3', 'Simple non-configurable server')]
+/**
+ * Class Server
+ * @package longhorn\server
+ */
 class Server extends Book
 {
   /**

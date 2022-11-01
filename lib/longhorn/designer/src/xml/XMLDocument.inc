@@ -1,10 +1,10 @@
-<?php namespace lib\longhorn\designer\src\xml;
+<?php namespace longhorn\designer\src\xml;
 
-use lib\longhorn\designer\src\Node;
+use longhorn\designer\src\Node;
 
 /**
  * Class XMLDocument
- * @package lib\longhorn\designer\src\xml
+ * @package longhorn\designer\src\xml
  */
 class XMLDocument extends Node
 {

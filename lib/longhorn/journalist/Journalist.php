@@ -1,10 +1,10 @@
-<?php namespace lib\longhorn\journalist;
+<?php namespace longhorn\journalist;
 
 use core\src\plugin\logger\AbstractLogger;
 
 /**
  * Class Journalist
- * @package lib\longhorn\journalist
+ * @package longhorn\journalist
  */
 final class Journalist extends AbstractLogger
 {
