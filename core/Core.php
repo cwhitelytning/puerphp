@@ -42,8 +42,10 @@ final class Core extends BookLoader
     if ($libs = @simplexml_load_file($env->format('{CONF_DIR}', 'books.xml'))) {
       foreach ($libs as $lib) {
         try {
-          $directory = $env::collect($env->get('LIB_DIR'), $group = (string)$lib['group']);
-          $this->loadClassFile($directory, (string)$lib['id'], $group);
+          $id = (string)$lib['id']; # Classpath is its unique identifier.
+          $filename = $env->format('{LIB_DIR}', "$id.php"); # Classpath must be the same as the filepath.
+
+          $this->loadClassFile($filename, $id);
         } catch (LoaderException $exception) {
           trigger_error($exception, E_USER_WARNING);
         }

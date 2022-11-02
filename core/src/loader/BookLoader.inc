@@ -33,22 +33,22 @@ class BookLoader extends Book
 
   /**
    * Returns the book.
-   * @param int $index
+   * @param string $class
    * @return Book|null
    */
-  final public function get(int $index): ?Book
+  final public function get(string $class): ?Book
   {
-    return $this->books[$index];
+    return $this->has($class) ? $this->books[$class] : null;
   }
 
   /**
    * Checks if the specified book class is present in the loader.
-   * @param int $index
+   * @param string $class
    * @return bool
    */
-  final public function has(int $index): bool
+  final public function has(string $class): bool
   {
-    return isset($this->books[$index]);
+    return isset($this->books[$class]);
   }
 
   /**
@@ -71,36 +71,19 @@ class BookLoader extends Book
   }
 
   /**
-   * Loads a class from a namespace that must match the directory structure in which the file is located.
-   * @param string $directory in which the libraries are located
-   * @param string $filename Classname -> filename (no extension) -> directory name.
-   * @param string $namespace in which the class to load will be searched for.
-   * @return Book|null
-   * @throws ClassNotFoundException
-   * @throws IncludeException
-   * @throws InvalidClassException
-   */
-  final protected function loadClassFile(string $directory, string $filename, string $namespace): ?Book
-  {
-    $filename = $this->getEnviron()::collect($directory, strtolower($filename), "$filename.php");
-    return $this->loadClassFileFrom($filename, $namespace);
-  }
-
-  /**
    * Loads a class from a file including a file and importing a class from a namespace.
    * Class name is taken from the file name.
    * @param string $filename
-   * @param string $namespace
+   * @param string $class
    * @return Book|null
    * @throws ClassNotFoundException
    * @throws IncludeException
    * @throws InvalidClassException
    */
-  private function loadClassFileFrom(string $filename, string $namespace): ?Book
+  protected function loadClassFile(string $filename, string $class): ?Book
   {
     if (@include_once($filename)) {
-      $name = pathinfo($filename, PATHINFO_FILENAME);
-      return $this->importClass("$namespace\\$name\\$name");
+      return $this->importClass($class);
     } else
       throw new IncludeException($filename);
   }
@@ -115,7 +98,7 @@ class BookLoader extends Book
    */
   private function importClass(string $class): ?Book
   {
-    if (class_exists($class)) {
+    if (class_exists($class, false)) {
       if ($this->isValidClass($class)) {
         return $this->add(new $class($this));
       } else
@@ -132,7 +115,7 @@ class BookLoader extends Book
    */
   private function isValidClass(string $class): bool
   {
-    $parents = class_parents($class);
+    $parents = class_parents($class, false);
     return isset($parents[static::BOOK_CLASS]);
   }
 
@@ -143,6 +126,6 @@ class BookLoader extends Book
    */
   private function add(Book $book): Book
   {
-    return $this->books[] = $book;
+    return $this->books[$book::class] = $book;
   }
 }
